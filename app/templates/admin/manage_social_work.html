@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Social Work - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="dashboard-page">
+
+    <!-- EDIT MODAL -->
+    <div class="sw-modal-backdrop" id="editModal">
+        <div class="sw-modal">
+            <h3>✏️ Edit Details</h3>
+            <form method="POST" id="editForm" class="sw-form">
+                <div class="sw-field">
+                    <label>Title</label>
+                    <input type="text" name="title" id="editTitle" placeholder="Image title" required>
+                </div>
+                <div class="sw-field">
+                    <label>Description</label>
+                    <textarea name="description" id="editDesc" rows="3" placeholder="Short description..."></textarea>
+                </div>
+                <div class="sw-field">
+                    <label>Event Date</label>
+                    <input type="date" name="event_date" id="editDate">
+                </div>
+                <div class="sw-modal-actions">
+                    <button type="button" class="sw-modal-cancel" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-upload-submit" style="flex:1; align-self:auto;">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="main-content sw-page">
+
+        <!-- HEADER -->
+        <div class="sw-header">
+            <div>
+                <h1>📸 Manage Social Work Gallery</h1>
+                <p>Upload, edit, reorder images and videos for the homepage slider and gallery.</p>
+            </div>
+            <a href="{{ url_for('auth.dashboard') }}" class="sw-back-btn">← Dashboard</a>
+        </div>
+
+        <!-- FLASH MESSAGES -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}" style="margin-bottom:16px;">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- UPLOAD PANEL -->
+        <div class="sw-upload-panel">
+            <h2>Upload New File(s)</h2>
+
+            <form method="POST"
+                  action="{{ url_for('auth.manage_social_work') }}"
+                  enctype="multipart/form-data"
+                  class="sw-form"
+                  id="uploadForm">
+
+                <!-- DROP ZONE -->
+                <div class="sw-drop-zone" id="dropZone">
+                    <input type="file" name="image" id="fileInput"
+                           accept="image/png,image/jpeg,image/webp,video/mp4,video/webm,video/quicktime"
+                           multiple>
+                    <div class="sw-drop-icon">📁</div>
+                    <h3>Drag & Drop or Click to Choose</h3>
+                    <p>Images: JPG, PNG, WEBP · Videos: MP4, WEBM, MOV</p>
+                    <p class="sw-drop-note">Multiple files supported · Images auto-compressed to max 1280px</p>
+                </div>
+
+                <!-- PREVIEW STRIP -->
+                <div class="sw-preview-strip" id="previewStrip"></div>
+
+                <div class="sw-form-row">
+                    <div class="sw-field">
+                        <label>Title <span style="color:var(--accent)">*</span></label>
+                        <input type="text" name="title" placeholder="e.g. Road Repair Drive 2025" required>
+                    </div>
+                    <div class="sw-field">
+                        <label>Event Date</label>
+                        <input type="date" name="event_date">
+                    </div>
+                </div>
+
+                <div class="sw-field">
+                    <label>Description</label>
+                    <textarea name="description" rows="2" placeholder="Short description of the work done..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-upload-submit">Upload File(s) 📤</button>
+            </form>
+        </div>
+
+        <!-- GALLERY -->
+        <div>
+            <div class="sw-gallery-header">
+                <h2>Uploaded Gallery</h2>
+                <span class="sw-count">{{ images|length }} file{{ '' if images|length == 1 else 's' }}</span>
+            </div>
+
+            <div class="sw-search">
+                <input type="text" id="gallerySearch" placeholder="🔍 Search by title or description...">
+            </div>
+
+            {% if images %}
+            <div class="sw-grid" id="galleryGrid">
+                {% for img in images %}
+                <div class="sw-card {% if img.is_featured %}featured-card{% endif %} {% if img.show_on_slider %}slider-card{% endif %} searchable-item"
+                     data-title="{{ (img.title or '')|lower }}"
+                     data-desc="{{ (img.description or '')|lower }}">
+
+                    <!-- MEDIA -->
+                    <div class="sw-card-media">
+                        {% if img.media_type == 'video' %}
+                        <video src="{{ url_for('static', filename=img.image_file) }}"
+                               muted loop preload="metadata"></video>
+                        {% else %}
+                        <img src="{{ url_for('static', filename=img.image_file) }}"
+                             alt="{{ img.title }}" loading="lazy">
+                        {% endif %}
+
+                        <div class="sw-card-badges">
+                            {% if img.show_on_slider %}
+                            <span class="sw-badge sw-badge-slider">🎞 Slider</span>
+                            {% endif %}
+                            {% if img.is_featured %}
+                            <span class="sw-badge sw-badge-featured">⭐ Featured</span>
+                            {% endif %}
+                            {% if img.media_type == 'video' %}
+                            <span class="sw-badge sw-badge-video">🎬 Video</span>
+                            {% endif %}
+                        </div>
+
+                        <span class="sw-card-order-badge">#{{ img.display_order }}</span>
+                    </div>
+
+                    <!-- BODY -->
+                    <div class="sw-card-body">
+                        <p class="sw-card-title">{{ img.title or 'Untitled' }}</p>
+
+                        {% if img.description %}
+                        <p class="sw-card-desc">{{ img.description }}</p>
+                        {% endif %}
+
+                        {% if img.event_date %}
+                        <p class="sw-card-date">📅 {{ img.event_date }}</p>
+                        {% endif %}
+
+                        <!-- ACTIONS -->
+                        <div class="sw-card-actions">
+
+                            <!-- Toggle Slider -->
+                            <form method="POST" action="{{ url_for('auth.toggle_slider', image_id=img.id) }}" style="display:contents;">
+                                <button type="submit" class="sw-btn sw-btn-slider {% if img.show_on_slider %}active{% endif %}">
+                                    🎞 {% if img.show_on_slider %}On Slider{% else %}Add to Slider{% endif %}
+                                </button>
+                            </form>
+
+                            <!-- Toggle Featured -->
+                            <form method="POST" action="{{ url_for('auth.toggle_featured', image_id=img.id) }}" style="display:contents;">
+                                <button type="submit" class="sw-btn sw-btn-featured {% if img.is_featured %}active{% endif %}">
+                                    ⭐ {% if img.is_featured %}Featured{% else %}Feature{% endif %}
+                                </button>
+                            </form>
+
+                            <!-- Edit -->
+                            <button type="button"
+        class="sw-btn sw-btn-edit"
+        data-id="{{ img.id }}"
+        data-title="{{ img.title|e }}"
+        data-description="{{ (img.description or '')|e }}"
+        data-date="{{ img.event_date or '' }}"
+        onclick="openModalFromButton(this)">
+    ✏️ Edit
+</button>
+
+                            <!-- Delete -->
+                            <form method="POST"
+                                  action="{{ url_for('auth.delete_social_work', image_id=img.id) }}"
+                                  onsubmit="return confirm('Delete this file permanently?')"
+                                  style="display:contents;">
+                                <button type="submit" class="sw-btn sw-btn-delete">🗑 Delete</button>
+                            </form>
+                        </div>
+
+                        <!-- ORDER CONTROLS -->
+                        <div class="sw-order-row">
+                            <span class="sw-order-label">Order:</span>
+
+                            <form method="POST" action="{{ url_for('auth.move_up', image_id=img.id) }}" style="display:contents;">
+                                <button type="submit" class="sw-btn-order" title="Move Up">▲</button>
+                            </form>
+
+                            <form method="POST" action="{{ url_for('auth.move_down', image_id=img.id) }}" style="display:contents;">
+                                <button type="submit" class="sw-btn-order" title="Move Down">▼</button>
+                            </form>
+
+                            <form method="POST" action="{{ url_for('auth.set_order', image_id=img.id) }}" style="display:contents;">
+                                <input type="number" name="order" value="{{ img.display_order }}"
+                                       min="1" class="sw-order-input" title="Set custom order">
+                                <button type="submit" class="sw-btn-order-set">Set</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="sw-no-results" id="noResults">
+                <div style="font-size:2rem; margin-bottom:10px;">🔍</div>
+                <p>No matching files found.</p>
+            </div>
+
+            {% else %}
+            <div class="sw-empty">
+                <div class="sw-empty-icon">🖼️</div>
+                <h3>No Files Uploaded Yet</h3>
+                <p>Upload images or videos using the panel above.</p>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+<script src="{{ url_for('static', filename='js/manage_social_work.js') }}"></script>  
+</body>
+</html>

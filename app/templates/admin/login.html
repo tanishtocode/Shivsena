@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - JanSeva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="login-page">
+
+    <div class="login-wrapper">
+
+        <div class="login-left">
+            <div class="login-left-content">
+                <div class="login-brand">
+                    <div class="brand-icon">🏛️</div>
+                    <span class="brand-name">Jan<span>Seva</span></span>
+                </div>
+                <h1 class="login-left-title">Community<br>Complaints Portal</h1>
+                <p class="login-left-sub">Admin Panel — Manage and resolve community complaints efficiently.</p>
+                <div class="login-stats">
+                    <div class="ls-stat"><span class="ls-num">1,240+</span><span class="ls-label">Resolved</span></div>
+                    <div class="ls-divider"></div>
+                    <div class="ls-stat"><span class="ls-num">100%</span><span class="ls-label">Response Rate</span></div>
+                    <div class="ls-divider"></div>
+                    <div class="ls-stat"><span class="ls-num">5k+</span><span class="ls-label">Helped</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <div class="login-box">
+                <div class="login-box-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to your admin account</p>
+                </div>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-wrap">
+            {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<form class="login-form" method="POST" action="{{ url_for('auth.login') }}">
+    <div class="login-form-group">
+        <label for="username">Username</label>
+        <div class="input-icon-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="username">
+        </div>
+    </div>
+
+    <div class="login-form-group">
+        <label for="password">Password</label>
+        <div class="input-icon-wrap">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="toggle-password" id="togglePwd">👁️</button>
+        </div>
+    </div>
+
+    <div class="login-options">
+        <label class="remember-label">
+            <input type="checkbox" name="remember">
+            <span>Remember me</span>
+        </label>
+    </div>
+
+    <button type="submit" class="btn-login" id="loginBtn">Sign In →</button>
+</form>
+                
+
+                <p class="login-back">
+                    <a href="{{ url_for('main.index') }}">← Back to Public Site</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('togglePwd').addEventListener('click', function () {
+            const pwd = document.getElementById('password');
+            pwd.type = pwd.type === 'password' ? 'text' : 'password';
+            this.textContent = pwd.type === 'password' ? '👁️' : '🙈';
+        });
+    </script>
+</body>
+</html>
