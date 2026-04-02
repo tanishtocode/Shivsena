@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - शिव सेतू</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="top-strip">
+        <p>🇮🇳 &nbsp;शिव सेतू — Connecting Citizens to Solutions</p>
+        <div class="top-strip-right">
+            <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
+            <a href="{{ url_for('auth.login') }}">Admin Login</a>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <a href="{{ url_for('main.index') }}" class="nav-logo">
+            <div class="nav-logo-icon">🔱</div>
+            <span class="nav-logo-text">शिव <span>सेतू</span></span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('main.index') }}">Home</a></li>
+            <li><a href="{{ url_for('complaints.submit') }}">Submit Complaint</a></li>
+            <li><a href="{{ url_for('complaints.track') }}">Track Complaint</a></li>
+            <li><a href="{{ url_for('main.about') }}">About</a></li>
+            <li><a href="{{ url_for('main.contact') }}" class="active">Contact</a></li>
+            <li><a href="{{ url_for('main.social_work') }}">Social Work</a></li>
+        </ul>
+        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 File a Complaint</a>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="{{ url_for('main.index') }}">🏠 Home</a>
+        <a href="{{ url_for('complaints.submit') }}">📝 Submit Complaint</a>
+        <a href="{{ url_for('complaints.track') }}">🔍 Track Complaint</a>
+        <a href="{{ url_for('main.about') }}">ℹ️ About</a>
+        <a href="{{ url_for('main.contact') }}" class="active">📞 Contact</a>
+        <a href="{{ url_for('auth.login') }}">🔐 Admin Login</a>
+        <a href="{{ url_for('main.social_work') }}">🖼️ Social Work</a>
+    
+    </div>
+
+    <section class="page-header">
+        <div class="page-header-content">
+            <p class="section-tag">Reach Us</p>
+            <h1 class="page-title">Contact Us</h1>
+            <p class="page-subtitle">We're here to help. Reach out to us anytime.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="contact-intro-text">Have questions or want to reach the office directly? Here are all the ways you can contact us.</p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon-box">📍</div>
+                        <div><h4>Office Address</h4><p>Chikuwadi, Near Joggers Park<br>Borivali, Mumbai - 400091</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon-box">📞</div>
+                        <div><h4>Phone Number</h4><p>+91 9820871320</p><p class="contact-note">Mon – Sat, 9:00 AM to 6:00 PM</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon-box">✉️</div>
+                        <div><h4>Email Address</h4><p>vinodpandere.upvibhaghpramukh@gmail.com</p><p class="contact-note">We reply within 24 hours</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon-box">🕐</div>
+                        <div><h4>Office Hours</h4><p>Monday – Friday: 9:00 AM – 6:00 PM</p><p>Saturday: 10:00 AM – 2:00 PM</p><p class="contact-note">Sunday: Closed</p></div>
+                    </div>
+                    <div class="social-links">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon">📘 Facebook</a>
+                            <a href="#" class="social-icon">💬 WhatsApp</a>
+                            <a href="#" class="social-icon">🐦 Twitter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <h2 class="section-title">Send a Message</h2>
+                    <p class="contact-intro-text">Not ready to file a complaint yet? Send us a general message.</p>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="your@email.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message ✉️</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-tag">Find Us</p>
+                <h2 class="section-title">Our Office Location</h2>
+            </div>
+            <div class="map-placeholder">
+                <span class="map-icon">📍</span>
+                <p>Chikuwadi, Near Joggers Park, Borivali, Mumbai - 400091</p>
+                <a href="https://maps.google.com" target="_blank" class="btn-primary" style="margin-top:8px;">Open in Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="nav-logo-text">शिव <span>सेतू</span></span>
+                <p>Connecting citizens to solutions. Serving the community of Borivali, Mumbai.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="{{ url_for('main.index') }}">Home</a>
+                <a href="{{ url_for('complaints.submit') }}">Submit Complaint</a>
+                <a href="{{ url_for('complaints.track') }}">Track Complaint</a>
+                <a href="{{ url_for('main.about') }}">About</a>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <p>📍 Chikuwadi, Borivali, Mumbai</p>
+                <p>📞 +91 9820871320</p>
+                <p>✉️ vinodpandere.upvibhaghpramukh@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 शिव सेतू. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+        }
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = this.querySelector('.btn-submit');
+                btn.textContent = '✅ Message Sent!';
+                btn.style.background = 'var(--success)';
+                btn.disabled = true;
+                this.reset();
+                setTimeout(() => {
+                    btn.textContent = 'Send Message ✉️';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>

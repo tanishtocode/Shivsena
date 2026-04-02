@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Helplines - शिव सेतू</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- TOP STRIP -->
+    <div class="top-strip">
+        <p>जनतेच्या सेवेसाठी समर्पित डिजिटल सुविधा</p>
+        <div class="top-strip-right">
+            <a href="{{ url_for('main.contact') }}">Contact</a>
+            <a href="{{ url_for('complaints.track') }}">Track Complaint</a>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <div class="nav-logo-icon">🔱</div>
+            <div class="nav-logo-text">शिव <span>सेतू</span></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="{{ url_for('main.index') }}">Home</a></li>
+            <li><a href="{{ url_for('main.about') }}">About</a></li>
+            <li><a href="{{ url_for('complaints.submit') }}">Submit Complaint</a></li>
+            <li><a href="{{ url_for('complaints.track') }}">Track</a></li>
+            <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('main.helplines') }}" class="active">Helplines</a></li>
+            <li><a href="{{ url_for('main.social_work') }}">Social Work</a></li>
+        </ul>
+
+        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">Raise Complaint</a>
+
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="{{ url_for('main.index') }}">Home</a>
+        <a href="{{ url_for('main.about') }}">About</a>
+        <a href="{{ url_for('complaints.submit') }}">Submit Complaint</a>
+        <a href="{{ url_for('complaints.track') }}">Track</a>
+        <a href="{{ url_for('main.contact') }}">Contact</a>
+        <a href="{{ url_for('main.helplines') }}" class="active">Helplines</a>
+        <a href="{{ url_for('main.social_work') }}">🖼️ Social Work</a>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <span class="section-tag">Emergency Support</span>
+            <h1 class="page-title">महत्त्वाचे हेल्पलाईन नंबर</h1>
+            <p class="page-subtitle">
+                तातडीच्या वेळी नागरिकांसाठी उपयुक्त संपर्क क्रमांक.
+            </p>
+        </div>
+    </section>
+
+    <!-- HELPLINES SECTION -->
+    <section class="helplines-section">
+        <div class="section-container">
+
+            <div class="helpline-top-alert">
+                <h2>🚨 Emergency Numbers</h2>
+                <p>In urgent situations, contact these numbers immediately.</p>
+            </div>
+
+            <div class="helpline-grid emergency-grid">
+                <div class="helpline-card emergency-card red">
+                    <div class="helpline-icon">🚓</div>
+                    <h3>Police</h3>
+                    <p class="helpline-number">100</p>
+                    <p>Immediate police assistance</p>
+                </div>
+
+                <div class="helpline-card emergency-card red">
+                    <div class="helpline-icon">🚑</div>
+                    <h3>Ambulance</h3>
+                    <p class="helpline-number">108</p>
+                    <p>Emergency medical support</p>
+                </div>
+
+                <div class="helpline-card emergency-card red">
+                    <div class="helpline-icon">🔥</div>
+                    <h3>Fire Brigade</h3>
+                    <p class="helpline-number">101</p>
+                    <p>Fire and rescue emergencies</p>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 60px;">
+                <span class="section-tag">Citizen Help</span>
+                <h2 class="section-title">Public Service Helplines</h2>
+                <p class="section-subtitle">Useful contact numbers for daily public support.</p>
+            </div>
+
+            <div class="helpline-grid">
+                <div class="helpline-card">
+                    <div class="helpline-icon">👩</div>
+                    <h3>Women Helpline</h3>
+                    <p class="helpline-number">1091</p>
+                    <p>Support for women safety & assistance</p>
+                </div>
+
+                <div class="helpline-card">
+                    <div class="helpline-icon">🧒</div>
+                    <h3>Child Helpline</h3>
+                    <p class="helpline-number">1098</p>
+                    <p>Help for children in distress</p>
+                </div>
+
+                <div class="helpline-card">
+                    <div class="helpline-icon">👴</div>
+                    <h3>Senior Citizen Help</h3>
+                    <p class="helpline-number">14567</p>
+                    <p>Support for senior citizens</p>
+                </div>
+
+                <div class="helpline-card">
+                    <div class="helpline-icon">⚡</div>
+                    <h3>Electricity Complaint</h3>
+                    <p class="helpline-number">1912</p>
+                    <p>Power supply and electricity complaints</p>
+                </div>
+
+                <div class="helpline-card">
+                    <div class="helpline-icon">💧</div>
+                    <h3>Water Supply</h3>
+                    <p class="helpline-number">1916</p>
+                    <p>Water-related public complaints</p>
+                </div>
+
+                <div class="helpline-card">
+                    <div class="helpline-icon">🛣️</div>
+                    <h3>Road / Civic Issue</h3>
+                    <p class="helpline-number">Municipal Office</p>
+                    <p>Road damage, garbage, drainage, streetlights</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2>Need to Raise a Civic Complaint?</h2>
+            <p>Report your issue quickly and help improve your local area.</p>
+            <a href="{{ url_for('complaints.submit') }}" class="btn-primary">Submit Complaint</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container section-container">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon">🛕</div>
+                    <div class="nav-logo-text">शिव <span>सेतू</span></div>
+                </div>
+                <p>
+                    शिव सेतू is a digital public service platform built to connect citizens
+                    with civic support, emergency contacts, and complaint resolution.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="{{ url_for('main.index') }}">Home</a>
+                <a href="{{ url_for('main.about') }}">About</a>
+                <a href="{{ url_for('complaints.submit') }}">Submit Complaint</a>
+                <a href="{{ url_for('complaints.track') }}">Track Complaint</a>
+                <a href="{{ url_for('main.helplines') }}">Helplines</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <p>Public Support Cell</p>
+                <p>Maharashtra, India</p>
+                <p>Citizen First Initiative</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Shiv Setu. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        function toggleMenu() {
+            document.getElementById("mobileMenu").classList.toggle("open");
+        }
+    </script>
+
+</body>
+</html>
