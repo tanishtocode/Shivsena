@@ -1,0 +1,25 @@
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# SQLite leftovers
+*.db
+*.sqlite3
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Flask instance folder
+instance/
+
+# Uploads
+app/static/uploads/
+
+# OS junk
+.DS_Store
+Thumbs.db
