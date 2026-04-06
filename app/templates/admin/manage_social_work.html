@@ -14,6 +14,7 @@
         <div class="sw-modal">
             <h3>✏️ Edit Details</h3>
             <form method="POST" id="editForm" class="sw-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="sw-field">
                     <label>Title</label>
                     <input type="text" name="title" id="editTitle" placeholder="Image title" required>
@@ -63,6 +64,7 @@
                   enctype="multipart/form-data"
                   class="sw-form"
                   id="uploadForm">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
                 <!-- DROP ZONE -->
                 <div class="sw-drop-zone" id="dropZone">
@@ -158,6 +160,7 @@
 
                             <!-- Toggle Slider -->
                             <form method="POST" action="{{ url_for('auth.toggle_slider', image_id=img.id) }}" style="display:contents;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="sw-btn sw-btn-slider {% if img.show_on_slider %}active{% endif %}">
                                     🎞 {% if img.show_on_slider %}On Slider{% else %}Add to Slider{% endif %}
                                 </button>
@@ -165,6 +168,7 @@
 
                             <!-- Toggle Featured -->
                             <form method="POST" action="{{ url_for('auth.toggle_featured', image_id=img.id) }}" style="display:contents;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="sw-btn sw-btn-featured {% if img.is_featured %}active{% endif %}">
                                     ⭐ {% if img.is_featured %}Featured{% else %}Feature{% endif %}
                                 </button>
@@ -186,6 +190,7 @@
                                   action="{{ url_for('auth.delete_social_work', image_id=img.id) }}"
                                   onsubmit="return confirm('Delete this file permanently?')"
                                   style="display:contents;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="sw-btn sw-btn-delete">🗑 Delete</button>
                             </form>
                         </div>
@@ -195,14 +200,17 @@
                             <span class="sw-order-label">Order:</span>
 
                             <form method="POST" action="{{ url_for('auth.move_up', image_id=img.id) }}" style="display:contents;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="sw-btn-order" title="Move Up">▲</button>
                             </form>
 
                             <form method="POST" action="{{ url_for('auth.move_down', image_id=img.id) }}" style="display:contents;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="sw-btn-order" title="Move Down">▼</button>
                             </form>
 
                             <form method="POST" action="{{ url_for('auth.set_order', image_id=img.id) }}" style="display:contents;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <input type="number" name="order" value="{{ img.display_order }}"
                                        min="1" class="sw-order-input" title="Set custom order">
                                 <button type="submit" class="sw-btn-order-set">Set</button>

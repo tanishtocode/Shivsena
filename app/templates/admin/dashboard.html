@@ -186,7 +186,7 @@
                                     <td>{{ c.created_at.strftime('%d %b %Y') }}</td>
                                     <td>
                                         <form method="POST" action="{{ url_for('auth.update_complaint', complaint_id=c.id) }}" class="admin-update-form">
-                                            <select name="status" class="status-select" required>
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> class="status-select" required>
                                                 <option value="Pending" {% if c.status == 'Pending' %}selected{% endif %}>Pending</option>
                                                 <option value="In Progress" {% if c.status == 'In Progress' %}selected{% endif %}>In Progress</option>
                                                 <option value="Resolved" {% if c.status == 'Resolved' %}selected{% endif %}>Resolved</option>
@@ -236,6 +236,7 @@
                             </div>
 
                             <form method="POST" action="{{ url_for('auth.update_complaint', complaint_id=c.id) }}" class="admin-update-form">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <select name="status" class="status-select" required>
                                     <option value="Pending" {% if c.status == 'Pending' %}selected{% endif %}>Pending</option>
                                     <option value="In Progress" {% if c.status == 'In Progress' %}selected{% endif %}>In Progress</option>

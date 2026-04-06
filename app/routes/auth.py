@@ -58,16 +58,20 @@ def compress_image(filepath):
 # ── Admin Login ──────────────────────────────────────────
 @auth.route("/admin/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("auth.dashboard"))
+
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
         remember = bool(request.form.get("remember"))
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             login_user(user, remember=remember)
             flash("Login successful!", "success")
             return redirect(url_for("auth.dashboard"))
-        flash("Invalid username or password.", "danger")
+        # SECURITY FIX: vague message — don't reveal whether username or password was wrong
+        flash("Invalid credentials. Please try again.", "danger")
         return redirect(url_for("auth.login"))
     return render_template("admin/login.html")
 
@@ -127,7 +131,7 @@ def manage_social_work():
         title       = request.form.get('title', '').strip()
         description = request.form.get('description', '').strip()
         event_date  = request.form.get('event_date', '').strip() or None
-        files       = request.files.getlist('image')   # multiple files
+        files       = request.files.getlist('image')
 
         if not files or all(f.filename == '' for f in files):
             flash('Please select at least one file.', 'warning')
@@ -264,7 +268,10 @@ def move_down(image_id):
 def set_order(image_id):
     image = SocialWorkImage.query.get_or_404(image_id)
     try:
-        image.display_order = int(request.form.get('order', image.display_order))
+        new_order = int(request.form.get('order', image.display_order))
+        if new_order < 1:
+            raise ValueError
+        image.display_order = new_order
         db.session.commit()
         flash(f'Order set to {image.display_order}.', 'success')
     except (ValueError, TypeError):
@@ -276,10 +283,19 @@ def set_order(image_id):
 @auth.route('/admin/social_work/delete/<int:image_id>', methods=['POST'])
 @login_required
 def delete_social_work(image_id):
-    image      = SocialWorkImage.query.get_or_404(image_id)
-    file_path  = os.path.join(current_app.root_path, 'static', image.image_file)
-    if os.path.exists(file_path):
+    image = SocialWorkImage.query.get_or_404(image_id)
+
+    # SECURITY FIX: prevent path traversal — only allow deletion inside social_work folder
+    # image.image_file is like "uploads/social_work/filename.jpg"
+    safe_base = os.path.join(current_app.root_path, 'static', 'uploads', 'social_work')
+    file_path = os.path.realpath(
+        os.path.join(current_app.root_path, 'static', image.image_file)
+    )
+
+    # Only delete if the resolved path is actually inside the uploads/social_work folder
+    if file_path.startswith(safe_base) and os.path.exists(file_path):
         os.remove(file_path)
+
     db.session.delete(image)
     db.session.commit()
     flash('File deleted successfully.', 'success')

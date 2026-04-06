@@ -84,6 +84,8 @@
                 {% endwith %}
 
                 <form class="submit-form" id="complaintForm" action="{{ url_for('complaints.submit') }}" method="POST" enctype="multipart/form-data">
+                    {# SECURITY FIX: CSRF token — protects against cross-site request forgery #}
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
                     <div class="form-section-title">
                         <span class="form-step-badge">1</span> Personal Details
@@ -165,7 +167,7 @@
                             <span class="upload-icon">📎</span>
                             <p>Click to upload or drag & drop</p>
                             <p class="upload-hint">JPG, PNG up to 5MB</p>
-                            <input type="file" id="photo" name="photo" accept="image/*" class="file-input">
+                            <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" class="file-input">
                         </div>
                         <p class="file-name" id="fileName"></p>
                     </div>

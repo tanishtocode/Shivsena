@@ -69,6 +69,7 @@
                 </div>
 
                 <form method="POST" class="submit-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label for="ticket_id">Ticket ID</label>
                         <input type="text" id="ticket_id" name="ticket_id"
@@ -109,7 +110,14 @@
                         </div>
                         <div class="track-item">
                             <span class="track-label">Status</span>
-                            <span class="track-status-badge {% if complaint.status == 'Resolved' %}status-resolved{% elif complaint.status == 'In Progress' %}status-progress{% else %}status-pending{% endif %}">
+                            {% if complaint.status == 'Resolved' %}
+                                {% set status_class = 'status-resolved' %}
+                            {% elif complaint.status == 'In Progress' %}
+                                {% set status_class = 'status-progress' %}
+                            {% else %}
+                                {% set status_class = 'status-pending' %}
+                            {% endif %}
+                            <span class="track-status-badge {{ status_class }}">
                                 {{ complaint.status }}
                             </span>
                         </div>
