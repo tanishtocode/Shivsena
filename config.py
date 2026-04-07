@@ -1,17 +1,36 @@
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env
+load_dotenv()
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+INSTANCE_DIR = os.path.join(BASE_DIR, "instance")
+
+# Ensure instance folder exists
+os.makedirs(INSTANCE_DIR, exist_ok=True)
+
 
 class Config:
-    # SECURITY FIX: No fallback value — app will crash loudly if SECRET_KEY is missing
-    # This is intentional: a missing secret key should never silently use a weak default
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
-    # Render gives DATABASE_URL with "postgres://" prefix — SQLAlchemy needs "postgresql://"
-    # SECURITY FIX: auto-fix the URL if needed (required for Render PostgreSQL)
-    _db_url = os.environ.get('DATABASE_URL', 'sqlite:///janseva.db')
-    if _db_url.startswith('postgres://'):
-        _db_url = _db_url.replace('postgres://', 'postgresql://', 1)
-    SQLALCHEMY_DATABASE_URI = _db_url
+    database_url = os.environ.get("DATABASE_URL")
 
+    # Fix old postgres:// style if ever used on Render
+    if database_url and database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+    # If using local sqlite, force absolute safe path
+    if not database_url or database_url.startswith("sqlite:///"):
+        database_url = f"sqlite:///{os.path.join(INSTANCE_DIR, 'janseva.db')}"
+
+    SQLALCHEMY_DATABASE_URI = database_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5 MB max upload
-    UPLOAD_FOLDER = 'app/static/uploads'
+
+    DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+    FLASK_ENV = os.environ.get("FLASK_ENV", "development")
+    ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
+
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, "app", "static", "uploads")
+    MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5 MB
+    ALLOWED_IMAGE_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
