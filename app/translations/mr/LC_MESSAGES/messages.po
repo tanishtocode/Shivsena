@@ -1,0 +1,583 @@
+# Marathi translations for Shivsetu Project.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shivsetu\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# ── COMMON / NAVBAR ──────────────────────────────────────────────────────────
+
+msgid "Shivsetu - Community Complaints Portal"
+msgstr "शिवसेतू - सार्वजनिक तक्रार पोर्टल"
+
+msgid "Shivsetu — Connecting Citizens to Solutions"
+msgstr "शिवसेतू — नागरिकांना उपायांशी जोडणारे"
+
+msgid "Admin Login"
+msgstr "प्रशासक लॉगिन"
+
+msgid "Home"
+msgstr "मुख्यपृष्ठ"
+
+msgid "Submit Complaint"
+msgstr "तक्रार नोंदवा"
+
+msgid "Track Complaint"
+msgstr "तक्रार तपासा"
+
+msgid "About"
+msgstr "माहिती"
+
+msgid "Contact"
+msgstr "संपर्क"
+
+msgid "Helplines"
+msgstr "मदत क्रमांक"
+
+msgid "Social Work"
+msgstr "सामाजिक कार्य"
+
+msgid "File a Complaint"
+msgstr "तक्रार करा"
+
+msgid "All rights reserved."
+msgstr "सर्व हक्क राखीव आहेत."
+
+msgid "Quick Links"
+msgstr "द्रुत दुवे"
+
+msgid "Connecting citizens to solutions. Serving Borivali, Mumbai."
+msgstr "नागरिकांना उपायांशी जोडणारे. बोरिवली, मुंबई येथे सेवा."
+
+msgid "Public Support Cell"
+msgstr "सार्वजनिक समर्थन कक्ष"
+
+# ── INDEX PAGE ───────────────────────────────────────────────────────────────
+
+msgid "Serving Maharashtra | Public Service"
+msgstr "महाराष्ट्र सेवा | जन सेवा"
+
+msgid "Your Voice,"
+msgstr "तुमचा आवाज,"
+
+msgid "Your Right"
+msgstr "तुमचा हक्क"
+
+msgid "Submit complaints about local issues like roads, water, electricity, safety and more. We connect citizens directly to the right authorities."
+msgstr "रस्ते, पाणी, वीज, सुरक्षा आणि इतर स्थानिक समस्यांबाबत तक्रार नोंदवा. आम्ही नागरिकांना थेट योग्य अधिकाऱ्यांशी जोडतो."
+
+msgid "Submit a Complaint"
+msgstr "तक्रार नोंदवा"
+
+msgid "Track Your Complaint"
+msgstr "तक्रार तपासा"
+
+msgid "What We Handle"
+msgstr "आम्ही काय हाताळतो"
+
+msgid "Complaint Categories"
+msgstr "तक्रारीचे प्रकार"
+
+msgid "We handle all types of local community issues"
+msgstr "आम्ही सर्व प्रकारच्या स्थानिक समस्या हाताळतो"
+
+msgid "Roads & Infrastructure"
+msgstr "रस्ते व पायाभूत सुविधा"
+
+msgid "Water Supply"
+msgstr "पाणीपुरवठा"
+
+msgid "Electricity"
+msgstr "वीज"
+
+msgid "Sanitation"
+msgstr "स्वच्छता"
+
+msgid "Safety & Security"
+msgstr "सुरक्षा"
+
+msgid "Other Issues"
+msgstr "इतर समस्या"
+
+# ── ABOUT PAGE ───────────────────────────────────────────────────────────────
+
+msgid "Who We Are"
+msgstr "आम्ही कोण आहोत"
+
+msgid "About Shiv Setu"
+msgstr "शिव सेतू बद्दल"
+
+msgid "A platform built to bridge the gap between citizens and local authorities"
+msgstr "नागरिक आणि स्थानिक प्रशासन यांच्यातील दरी कमी करण्यासाठी बांधलेले व्यासपीठ"
+
+msgid "Our Story"
+msgstr "आमची कथा"
+
+msgid "Why Shiv Setu Was Created"
+msgstr "शिव सेतू का बनवले गेले"
+
+msgid "Shiv Setu was founded by a dedicated social worker who saw people in the community struggling to get their basic problems heard and resolved."
+msgstr "शिव सेतूची स्थापना एका समर्पित सामाजिक कार्यकर्त्याने केली, जेव्हा त्यांनी पाहिले की समाजातील लोक आपल्या मूलभूत समस्या मांडण्यासाठी आणि सोडवण्यासाठी झुंजत आहेत."
+
+msgid "From broken roads to water supply issues, people often had nowhere to go or no easy way to follow up."
+msgstr "खराब रस्त्यांपासून पाणी पुरवठ्याच्या समस्यांपर्यंत, लोकांकडे जाण्यासाठी कोठेही नव्हते किंवा पाठपुरावा करण्याचा सोपा मार्ग नव्हता."
+
+msgid "This platform was created to give every citizen a simple, accessible way to raise their voice — and to make sure that voice is heard by the right people."
+msgstr "हे व्यासपीठ प्रत्येक नागरिकाला आपला आवाज उठवण्यासाठी एक सोपा आणि सुलभ मार्ग देण्यासाठी तयार केले गेले — आणि तो आवाज योग्य लोकांपर्यंत पोहोचेल याची खात्री करण्यासाठी."
+
+msgid "We believe a strong community is built when its people have the tools to speak up and when those in power are held accountable."
+msgstr "आम्हाला विश्वास आहे की एक मजबूत समाज तेव्हाच बनतो जेव्हा लोकांकडे बोलण्याची साधने असतात आणि सत्तेत असलेले जबाबदार असतात."
+
+msgid "Get in Touch"
+msgstr "संपर्क करा"
+
+msgid "Serving the Community Since 2020"
+msgstr "२०२० पासून समाजाची सेवा"
+
+msgid "Trusted by 5,000+"
+msgstr "५,०००+ नागरिकांचा विश्वास"
+
+msgid "citizens in our locality"
+msgstr "आमच्या परिसरातील नागरिक"
+
+msgid "Complaints Resolved"
+msgstr "तक्रारी निकाली"
+
+msgid "Citizens Helped"
+msgstr "नागरिकांना मदत"
+
+msgid "Response Rate"
+msgstr "प्रतिसाद दर"
+
+msgid "Years of Service"
+msgstr "सेवेची वर्षे"
+
+msgid "Our Purpose"
+msgstr "आमचा उद्देश"
+
+msgid "Mission, Vision & Values"
+msgstr "ध्येय, दृष्टी आणि मूल्ये"
+
+msgid "Our Mission"
+msgstr "आमचे ध्येय"
+
+msgid "To provide every citizen in our locality a simple and effective way to report local issues and ensure they are addressed in a timely and transparent manner."
+msgstr "आमच्या परिसरातील प्रत्येक नागरिकाला स्थानिक समस्या नोंदवण्यासाठी एक सोपा आणि प्रभावी मार्ग उपलब्ध करून देणे आणि त्या वेळेवर व पारदर्शक पद्धतीने सोडवल्या जातील याची खात्री करणे."
+
+msgid "Our Vision"
+msgstr "आमची दृष्टी"
+
+msgid "A community where every resident feels heard, every problem gets attention, and local authorities are accountable to the people they serve."
+msgstr "एक समाज जिथे प्रत्येक रहिवाशाला ऐकले जाते, प्रत्येक समस्येकडे लक्ष दिले जाते आणि स्थानिक अधिकारी ज्यांची ते सेवा करतात त्यांना उत्तरदायी असतात."
+
+msgid "Our Values"
+msgstr "आमची मूल्ये"
+
+msgid "Transparency, accountability, and genuine care for the community are at the heart of everything we do at Shiv Setu."
+msgstr "पारदर्शकता, जबाबदारी आणि समाजाची खरी काळजी हे शिव सेतूमध्ये आम्ही करत असलेल्या प्रत्येक गोष्टीच्या केंद्रस्थानी आहे."
+
+msgid "The Person Behind It"
+msgstr "यामागील व्यक्ती"
+
+msgid "Meet Our Social Worker"
+msgstr "आमच्या सामाजिक कार्यकर्त्याला भेटा"
+
+msgid "Dedicated to serving the community for over 4 years"
+msgstr "४ वर्षांपेक्षा जास्त काळ समाजाची सेवा करण्यास समर्पित"
+
+msgid "Community Social Worker & Local Activist"
+msgstr "सामुदायिक सामाजिक कार्यकर्ते आणि स्थानिक कार्यकर्ते"
+
+msgid "With over 4 years of experience working at the grassroots level, Vinod has helped thousands of citizens resolve issues related to infrastructure, civic amenities, and local governance. He works closely with municipal authorities and NGOs to bring real change to the community of Borivali, Mumbai."
+msgstr "जमिनीच्या पातळीवर ४ वर्षांपेक्षा जास्त अनुभवासह, विनोद यांनी हजारो नागरिकांना पायाभूत सुविधा, नागरी सुविधा आणि स्थानिक प्रशासनाशी संबंधित समस्या सोडवण्यास मदत केली आहे. ते बोरिवली, मुंबईच्या समाजात खरा बदल घडवण्यासाठी महानगरपालिका अधिकारी आणि NGO सोबत जवळून काम करतात."
+
+msgid "Community Welfare"
+msgstr "सामुदायिक कल्याण"
+
+msgid "Local Governance"
+msgstr "स्थानिक प्रशासन"
+
+msgid "Infrastructure"
+msgstr "पायाभूत सुविधा"
+
+msgid "Legal Aid"
+msgstr "कायदेशीर मदत"
+
+msgid "Have a Problem in Your Area?"
+msgstr "तुमच्या परिसरात काही समस्या आहे का?"
+
+msgid "Don't stay silent. Your complaint can make a difference for the whole community."
+msgstr "शांत राहू नका. तुमची तक्रार संपूर्ण समाजासाठी फरक घडवू शकते."
+
+msgid "Submit Your Complaint Now"
+msgstr "आत्ताच तक्रार नोंदवा"
+
+msgid "Mon–Sat: 9AM – 6PM"
+msgstr "सोम–शनि: सकाळी ९ – सायंकाळी ६"
+
+# ── CONTACT PAGE ─────────────────────────────────────────────────────────────
+
+msgid "Reach Us"
+msgstr "आम्हाला गाठा"
+
+msgid "Contact Us"
+msgstr "आमच्याशी संपर्क करा"
+
+msgid "We're here to help. Reach out to us anytime."
+msgstr "आम्ही मदतीसाठी येथे आहोत. कधीही संपर्क करा."
+
+msgid "Get In Touch"
+msgstr "संपर्क साधा"
+
+msgid "Have questions or want to reach the office directly? Here are all the ways you can contact us."
+msgstr "प्रश्न आहेत किंवा थेट कार्यालयाशी संपर्क साधायचा आहे? येथे तुम्ही आमच्याशी संपर्क करण्याचे सर्व मार्ग आहेत."
+
+msgid "Office Address"
+msgstr "कार्यालयाचा पत्ता"
+
+msgid "Phone Number"
+msgstr "फोन नंबर"
+
+msgid "Mon – Sat, 9:00 AM to 6:00 PM"
+msgstr "सोम – शनि, सकाळी ९:०० ते सायंकाळी ६:००"
+
+msgid "Email Address"
+msgstr "ईमेल पत्ता"
+
+msgid "We reply within 24 hours"
+msgstr "आम्ही २४ तासांत उत्तर देतो"
+
+msgid "Office Hours"
+msgstr "कार्यालयीन वेळ"
+
+msgid "Monday – Friday: 9:00 AM – 6:00 PM"
+msgstr "सोमवार – शुक्रवार: सकाळी ९:०० – सायंकाळी ६:००"
+
+msgid "Saturday: 10:00 AM – 2:00 PM"
+msgstr "शनिवार: सकाळी १०:०० – दुपारी २:००"
+
+msgid "Sunday: Closed"
+msgstr "रविवार: बंद"
+
+msgid "Follow Us"
+msgstr "आम्हाला फॉलो करा"
+
+msgid "Send a Message"
+msgstr "संदेश पाठवा"
+
+msgid "Not ready to file a complaint yet? Send us a general message."
+msgstr "अद्याप तक्रार नोंदवण्यास तयार नाही? आम्हाला एक सामान्य संदेश पाठवा."
+
+msgid "Full Name"
+msgstr "पूर्ण नाव"
+
+msgid "Enter your full name"
+msgstr "तुमचे पूर्ण नाव टाका"
+
+msgid "Subject"
+msgstr "विषय"
+
+msgid "What is this about?"
+msgstr "हे कशाबद्दल आहे?"
+
+msgid "Message"
+msgstr "संदेश"
+
+msgid "Write your message here..."
+msgstr "तुमचा संदेश येथे लिहा..."
+
+msgid "Send Message"
+msgstr "संदेश पाठवा"
+
+msgid "Message Sent!"
+msgstr "संदेश पाठवला!"
+
+msgid "Find Us"
+msgstr "आम्हाला शोधा"
+
+msgid "Our Office Location"
+msgstr "आमच्या कार्यालयाचे ठिकाण"
+
+msgid "Open in Google Maps"
+msgstr "Google Maps मध्ये उघडा"
+
+# ── HELPLINES PAGE ───────────────────────────────────────────────────────────
+
+msgid "Emergency Helplines"
+msgstr "आपत्कालीन हेल्पलाईन"
+
+msgid "Emergency Support"
+msgstr "आपत्कालीन समर्थन"
+
+msgid "Important Helpline Numbers"
+msgstr "महत्त्वाचे हेल्पलाईन नंबर"
+
+msgid "Useful contact numbers for citizens during urgent situations."
+msgstr "तातडीच्या वेळी नागरिकांसाठी उपयुक्त संपर्क क्रमांक."
+
+msgid "Emergency Numbers"
+msgstr "आपत्कालीन क्रमांक"
+
+msgid "In urgent situations, contact these numbers immediately."
+msgstr "तातडीच्या परिस्थितीत, या नंबरवर त्वरित संपर्क करा."
+
+msgid "Police"
+msgstr "पोलीस"
+
+msgid "Immediate police assistance"
+msgstr "त्वरित पोलीस सहाय्य"
+
+msgid "Ambulance"
+msgstr "रुग्णवाहिका"
+
+msgid "Emergency medical support"
+msgstr "आपत्कालीन वैद्यकीय मदत"
+
+msgid "Fire Brigade"
+msgstr "अग्निशमन दल"
+
+msgid "Fire and rescue emergencies"
+msgstr "आग आणि बचाव आपत्कालीन परिस्थिती"
+
+msgid "Citizen Help"
+msgstr "नागरिक मदत"
+
+msgid "Public Service Helplines"
+msgstr "सार्वजनिक सेवा हेल्पलाईन"
+
+msgid "Useful contact numbers for daily public support."
+msgstr "दैनंदिन सार्वजनिक मदतीसाठी उपयुक्त संपर्क क्रमांक."
+
+msgid "Women Helpline"
+msgstr "महिला हेल्पलाईन"
+
+msgid "Support for women safety & assistance"
+msgstr "महिला सुरक्षा आणि मदतीसाठी"
+
+msgid "Child Helpline"
+msgstr "बाल हेल्पलाईन"
+
+msgid "Help for children in distress"
+msgstr "संकटात असलेल्या मुलांसाठी मदत"
+
+msgid "Senior Citizen Help"
+msgstr "ज्येष्ठ नागरिक मदत"
+
+msgid "Support for senior citizens"
+msgstr "ज्येष्ठ नागरिकांसाठी मदत"
+
+msgid "Electricity Complaint"
+msgstr "वीज तक्रार"
+
+msgid "Power supply and electricity complaints"
+msgstr "वीजपुरवठा आणि वीज तक्रारी"
+
+msgid "Water-related public complaints"
+msgstr "पाण्याशी संबंधित सार्वजनिक तक्रारी"
+
+msgid "Road / Civic Issue"
+msgstr "रस्ता / नागरी समस्या"
+
+msgid "Municipal Office"
+msgstr "महानगरपालिका कार्यालय"
+
+msgid "Road damage, garbage, drainage, streetlights"
+msgstr "रस्त्याचे नुकसान, कचरा, निचरा, पथदिवे"
+
+msgid "Need to Raise a Civic Complaint?"
+msgstr "नागरी तक्रार नोंदवायची आहे का?"
+
+msgid "Report your issue quickly and help improve your local area."
+msgstr "तुमची समस्या त्वरित नोंदवा आणि तुमचा परिसर सुधारण्यास मदत करा."
+
+msgid "Submit Complaint"
+msgstr "तक्रार नोंदवा"
+
+# ── SOCIAL WORK PAGE ─────────────────────────────────────────────────────────
+
+msgid "Social Work Gallery"
+msgstr "सामाजिक कार्य गॅलरी"
+
+msgid "Public Service"
+msgstr "सार्वजनिक सेवा"
+
+msgid "Our Social Work Gallery"
+msgstr "आमची सामाजिक कार्य गॅलरी"
+
+msgid "Real work done for the people and community of Borivali, Mumbai"
+msgstr "बोरिवली, मुंबईच्या लोकांसाठी आणि समाजासाठी केलेले खरे कार्य"
+
+msgid "file"
+msgstr "फाईल"
+
+msgid "s"
+msgstr ""
+
+msgid "featured"
+msgstr "वैशिष्ट्यीकृत"
+
+msgid "Featured Work"
+msgstr "वैशिष्ट्यीकृत कार्य"
+
+msgid "Video"
+msgstr "व्हिडिओ"
+
+msgid "No Content Yet"
+msgstr "अद्याप कोणतीही सामग्री नाही"
+
+msgid "Gallery content will appear here once uploaded from the admin panel."
+msgstr "प्रशासक पॅनेलमधून अपलोड केल्यानंतर गॅलरी सामग्री येथे दिसेल."
+
+# ── SUBMIT PAGE ──────────────────────────────────────────────────────────────
+
+msgid "Raise Your Voice"
+msgstr "तुमचा आवाज उठवा"
+
+msgid "Fill in the details below. We will review and take action as soon as possible."
+msgstr "खाली तपशील भरा. आम्ही शक्य तितक्या लवकर आढावा घेऊ आणि कारवाई करू."
+
+msgid "Before You Submit"
+msgstr "सबमिट करण्यापूर्वी"
+
+msgid "Describe your problem clearly and in detail"
+msgstr "तुमची समस्या स्पष्टपणे आणि तपशीलवार सांगा"
+
+msgid "Mention exact location or area of the problem"
+msgstr "समस्येचे अचूक ठिकाण किंवा परिसर नमूद करा"
+
+msgid "Attach a photo if possible — it helps resolve faster"
+msgstr "शक्य असल्यास फोटो जोडा — यामुळे जलद निराकरण होते"
+
+msgid "Provide correct contact so we can follow up"
+msgstr "योग्य संपर्क द्या जेणेकरून आम्ही पाठपुरावा करू शकू"
+
+msgid "Save your Ticket ID after submission to track status"
+msgstr "स्थिती तपासण्यासाठी सबमिशननंतर तुमचा तिकीट आयडी जतन करा"
+
+msgid "All complaints are reviewed within"
+msgstr "सर्व तक्रारींचा आढावा"
+
+msgid "24 hours"
+msgstr "२४ तासांत"
+
+msgid "Urgent issues like safety or water supply are prioritised."
+msgstr "सुरक्षा किंवा पाणी पुरवठ्यासारख्या तातडीच्या समस्यांना प्राधान्य दिले जाते."
+
+msgid "Need help filling the form?"
+msgstr "फॉर्म भरण्यात मदत हवी आहे का?"
+
+msgid "Call our office"
+msgstr "आमच्या कार्यालयाला फोन करा"
+
+msgid "Personal Details"
+msgstr "वैयक्तिक तपशील"
+
+msgid "optional"
+msgstr "ऐच्छिक"
+
+msgid "Your Address / Area"
+msgstr "तुमचा पत्ता / परिसर"
+
+msgid "e.g. Chikuwadi, Ward 5, Near Joggers Park"
+msgstr "उदा. चिकुवाडी, वॉर्ड ५, जॉगर्स पार्कजवळ"
+
+msgid "Complaint Details"
+msgstr "तक्रारीचा तपशील"
+
+msgid "Category"
+msgstr "श्रेणी"
+
+msgid "Select a category"
+msgstr "एक श्रेणी निवडा"
+
+msgid "Sanitation & Garbage"
+msgstr "स्वच्छता व कचरा"
+
+msgid "Other"
+msgstr "इतर"
+
+msgid "Exact Location of Problem"
+msgstr "समस्येचे अचूक ठिकाण"
+
+msgid "e.g. Near Bus Stop No. 12, Chikuwadi"
+msgstr "उदा. बस स्टॉप क्र. १२ जवळ, चिकुवाडी"
+
+msgid "Describe the Problem"
+msgstr "समस्या वर्णन करा"
+
+msgid "Explain the issue in detail. When did it start? How is it affecting you?"
+msgstr "समस्या तपशीलवार सांगा. ती कधी सुरू झाली? ती तुम्हाला कशी प्रभावित करत आहे?"
+
+msgid "characters"
+msgstr "अक्षरे"
+
+msgid "Priority Level"
+msgstr "प्राधान्य पातळी"
+
+msgid "Low"
+msgstr "कमी"
+
+msgid "Medium"
+msgstr "मध्यम"
+
+msgid "High / Urgent"
+msgstr "उच्च / तातडीचे"
+
+msgid "Attach Photo"
+msgstr "फोटो जोडा"
+
+msgid "Click to upload or drag & drop"
+msgstr "अपलोड करण्यासाठी क्लिक करा किंवा ड्रॅग आणि ड्रॉप करा"
+
+msgid "JPG, PNG up to 5MB"
+msgstr "JPG, PNG ५MB पर्यंत"
+
+msgid "I confirm that the information provided is true and accurate."
+msgstr "मी पुष्टी करतो/करते की दिलेली माहिती सत्य आणि अचूक आहे."
+
+# ── TRACK PAGE ───────────────────────────────────────────────────────────────
+
+msgid "Stay Updated"
+msgstr "माहितीत रहा"
+
+msgid "Enter your Ticket ID to check the current status of your complaint."
+msgstr "तुमच्या तक्रारीची सध्याची स्थिती तपासण्यासाठी तुमचा तिकीट आयडी टाका."
+
+msgid "Enter Your Ticket ID"
+msgstr "तुमचा तिकीट आयडी टाका"
+
+msgid "Ticket ID"
+msgstr "तिकीट आयडी"
+
+msgid "e.g. JAN-2025-1234"
+msgstr "उदा. JAN-2025-1234"
+
+msgid "Complaint Details"
+msgstr "तक्रारीचा तपशील"
+
+msgid "Name"
+msgstr "नाव"
+
+msgid "Phone"
+msgstr "फोन"
+
+msgid "Location"
+msgstr "ठिकाण"
+
+msgid "Priority"
+msgstr "प्राधान्य"
+
+msgid "Status"
+msgstr "स्थिती"
+
+msgid "Description"
+msgstr "वर्णन"
+
+msgid "Date Submitted"
+msgstr "सबमिट केलेली तारीख"
+
+msgid "Admin Note"
+msgstr "प्रशासकाची नोंद"

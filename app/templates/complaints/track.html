@@ -1,54 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ session.get('lang', 'en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Complaint - शिव सेतू</title>
+    <title>{{ _('Track Complaint') }} - शिव सेतू</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo1.png') }}">
 </head>
 <body>
 
+<!-- 🌐 LANGUAGE SWITCH -->
+<div class="lang-switch">
+    <a href="{{ url_for('main.set_language', lang='en') }}">EN</a>
+    <a href="{{ url_for('main.set_language', lang='mr') }}">मराठी</a>
+</div>
+
     <div class="top-strip">
-        <p>🇮🇳 &nbsp;शिव सेतू — Connecting Citizens to Solutions</p>
+        <p>🇮🇳 &nbsp;{{ _('Shivsetu — Connecting Citizens to Solutions') }}</p>
         <div class="top-strip-right">
             <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
-            <a href="{{ url_for('auth.login') }}">Admin Login</a>
+            <a href="{{ url_for('auth.login') }}">{{ _('Admin Login') }}</a>
         </div>
     </div>
 
     <nav class="navbar">
         <a href="{{ url_for('main.index') }}" class="nav-logo">
-            <div class="nav-logo-icon">🔱</div>
+            <div class="nav-logo-icon">🏹</div>
             <span class="nav-logo-text">शिव <span>सेतू</span></span>
         </a>
         <ul class="nav-links">
-            <li><a href="{{ url_for('main.index') }}">Home</a></li>
-            <li><a href="{{ url_for('complaints.submit') }}">Submit Complaint</a></li>
-            <li><a href="{{ url_for('complaints.track') }}" class="active">Track Complaint</a></li>
-            <li><a href="{{ url_for('main.about') }}">About</a></li>
-            <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-            <li><a href="{{ url_for('main.social_work') }}">Social Work</a></li>
+            <li><a href="{{ url_for('main.index') }}">{{ _('Home') }}</a></li>
+            <li><a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a></li>
+            <li><a href="{{ url_for('complaints.track') }}" class="active">{{ _('Track Complaint') }}</a></li>
+            <li><a href="{{ url_for('main.about') }}">{{ _('About') }}</a></li>
+            <li><a href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
+            <li><a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a></li>
+            <li><a href="{{ url_for('main.social_work') }}">{{ _('Social Work') }}</a></li>
         </ul>
-        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 File a Complaint</a>
+        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 {{ _('File a Complaint') }}</a>
         <div class="hamburger" id="hamburger">&#9776;</div>
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="{{ url_for('main.index') }}">🏠 Home</a>
-        <a href="{{ url_for('complaints.submit') }}">📝 Submit Complaint</a>
-        <a href="{{ url_for('complaints.track') }}" class="active">🔍 Track Complaint</a>
-        <a href="{{ url_for('main.about') }}">ℹ️ About</a>
-        <a href="{{ url_for('main.contact') }}">📞 Contact</a>
-        <a href="{{ url_for('auth.login') }}">🔐 Admin Login</a>
-        <a href="{{ url_for('main.social_work') }}">🖼️ Social Work</a>
+        <a href="{{ url_for('main.index') }}">🏠 {{ _('Home') }}</a>
+        <a href="{{ url_for('complaints.submit') }}">📝 {{ _('Submit Complaint') }}</a>
+        <a href="{{ url_for('complaints.track') }}" class="active">🔍 {{ _('Track Complaint') }}</a>
+        <a href="{{ url_for('main.about') }}">ℹ️ {{ _('About') }}</a>
+        <a href="{{ url_for('main.contact') }}">📞 {{ _('Contact') }}</a>
+        <a href="{{ url_for('auth.login') }}">🔐 {{ _('Admin Login') }}</a>
+        <a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a>
+        <a href="{{ url_for('main.social_work') }}">🖼️ {{ _('Social Work') }}</a>
     </div>
 
     <section class="page-header">
         <div class="page-header-content">
-            <p class="section-tag">Stay Updated</p>
-            <h1 class="page-title">Track Your Complaint</h1>
-            <p class="page-subtitle">Enter your Ticket ID to check the current status of your complaint.</p>
+            <p class="section-tag">{{ _('Stay Updated') }}</p>
+            <h1 class="page-title">{{ _('Track Your Complaint') }}</h1>
+            <p class="page-subtitle">{{ _('Enter your Ticket ID to check the current status of your complaint.') }}</p>
         </div>
     </section>
 
@@ -65,51 +74,51 @@
                 {% endwith %}
 
                 <div class="form-section-title">
-                    <span class="form-step-badge">🔍</span> Enter Your Ticket ID
+                    <span class="form-step-badge">🔍</span> {{ _('Enter Your Ticket ID') }}
                 </div>
 
                 <form method="POST" class="submit-form">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label for="ticket_id">Ticket ID</label>
+                        <label for="ticket_id">{{ _('Ticket ID') }}</label>
                         <input type="text" id="ticket_id" name="ticket_id"
-                            placeholder="e.g. JAN-2025-1234"
+                            placeholder="{{ _('e.g. JAN-2025-1234') }}"
                             value="{{ request.form.get('ticket_id', '') }}"
                             required>
                     </div>
-                    <button type="submit" class="btn-submit-full">Track Complaint 🔍</button>
+                    <button type="submit" class="btn-submit-full">{{ _('Track Complaint') }} 🔍</button>
                 </form>
 
                 {% if complaint %}
                 <div class="track-result-card">
-                    <h3>📋 Complaint Details — {{ complaint.ticket_id }}</h3>
+                    <h3>📋 {{ _('Complaint Details') }} — {{ complaint.ticket_id }}</h3>
                     <div class="track-details">
                         <div class="track-item">
-                            <span class="track-label">Ticket ID</span>
+                            <span class="track-label">{{ _('Ticket ID') }}</span>
                             <span class="track-value">{{ complaint.ticket_id }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Name</span>
+                            <span class="track-label">{{ _('Name') }}</span>
                             <span class="track-value">{{ complaint.name }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Phone</span>
+                            <span class="track-label">{{ _('Phone') }}</span>
                             <span class="track-value">{{ complaint.phone }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Category</span>
+                            <span class="track-label">{{ _('Category') }}</span>
                             <span class="track-value">{{ complaint.category }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Location</span>
+                            <span class="track-label">{{ _('Location') }}</span>
                             <span class="track-value">{{ complaint.location }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Priority</span>
+                            <span class="track-label">{{ _('Priority') }}</span>
                             <span class="track-value">{{ complaint.priority | capitalize }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Status</span>
+                            <span class="track-label">{{ _('Status') }}</span>
                             {% if complaint.status == 'Resolved' %}
                                 {% set status_class = 'status-resolved' %}
                             {% elif complaint.status == 'In Progress' %}
@@ -117,21 +126,19 @@
                             {% else %}
                                 {% set status_class = 'status-pending' %}
                             {% endif %}
-                            <span class="track-status-badge {{ status_class }}">
-                                {{ complaint.status }}
-                            </span>
+                            <span class="track-status-badge {{ status_class }}">{{ complaint.status }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Description</span>
+                            <span class="track-label">{{ _('Description') }}</span>
                             <span class="track-value">{{ complaint.description }}</span>
                         </div>
                         <div class="track-item">
-                            <span class="track-label">Date Submitted</span>
+                            <span class="track-label">{{ _('Date Submitted') }}</span>
                             <span class="track-value">{{ complaint.created_at.strftime('%d %b %Y, %I:%M %p') }}</span>
                         </div>
                         {% if complaint.admin_note %}
                         <div class="track-item">
-                            <span class="track-label">Admin Note</span>
+                            <span class="track-label">{{ _('Admin Note') }}</span>
                             <span class="track-value">{{ complaint.admin_note }}</span>
                         </div>
                         {% endif %}
@@ -147,23 +154,23 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <span class="nav-logo-text">शिव <span>सेतू</span></span>
-                <p>Connecting citizens to solutions. Serving the community of Borivali, Mumbai.</p>
+                <p>{{ _('Connecting citizens to solutions. Serving Borivali, Mumbai.') }}</p>
             </div>
             <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="{{ url_for('main.index') }}">Home</a>
-                <a href="{{ url_for('complaints.submit') }}">Submit Complaint</a>
-                <a href="{{ url_for('complaints.track') }}">Track Complaint</a>
-                <a href="{{ url_for('main.about') }}">About</a>
+                <h4>{{ _('Quick Links') }}</h4>
+                <a href="{{ url_for('main.index') }}">{{ _('Home') }}</a>
+                <a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a>
+                <a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a>
+                <a href="{{ url_for('main.about') }}">{{ _('About') }}</a>
             </div>
             <div class="footer-links">
-                <h4>Contact</h4>
+                <h4>{{ _('Contact') }}</h4>
                 <p>📍 Chikuwadi, Borivali, Mumbai</p>
                 <p>📞 +91 9820871320</p>
                 <p>✉️ vinodpandere.upvibhaghpramukh@gmail.com</p>
             </div>
         </div>
-        <div class="footer-bottom"><p>© 2025 शिव सेतू. All rights reserved.</p></div>
+        <div class="footer-bottom"><p>© 2025 शिव सेतू. {{ _('All rights reserved.') }}</p></div>
     </footer>
 
     <script>

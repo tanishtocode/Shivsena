@@ -1,55 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ session.get('lang', 'en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - शिव सेतू</title>
+    <title>{{ _('Contact') }} - शिव सेतू</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo1.png') }}">
 </head>
 <body>
 
+<!-- 🌐 LANGUAGE SWITCH -->
+<div class="lang-switch">
+    <a href="{{ url_for('main.set_language', lang='en') }}">EN</a>
+    <a href="{{ url_for('main.set_language', lang='mr') }}">मराठी</a>
+</div>
+
     <div class="top-strip">
-        <p>🇮🇳 &nbsp;शिव सेतू — Connecting Citizens to Solutions</p>
+        <p>🇮🇳 &nbsp;{{ _('Shivsetu — Connecting Citizens to Solutions') }}</p>
         <div class="top-strip-right">
             <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
-            <a href="{{ url_for('auth.login') }}">Admin Login</a>
+            <a href="{{ url_for('auth.login') }}">{{ _('Admin Login') }}</a>
         </div>
     </div>
 
     <nav class="navbar">
         <a href="{{ url_for('main.index') }}" class="nav-logo">
-            <div class="nav-logo-icon">🔱</div>
+            <div class="nav-logo-icon">🏹</div>
             <span class="nav-logo-text">शिव <span>सेतू</span></span>
         </a>
         <ul class="nav-links">
-            <li><a href="{{ url_for('main.index') }}">Home</a></li>
-            <li><a href="{{ url_for('complaints.submit') }}">Submit Complaint</a></li>
-            <li><a href="{{ url_for('complaints.track') }}">Track Complaint</a></li>
-            <li><a href="{{ url_for('main.about') }}">About</a></li>
-            <li><a href="{{ url_for('main.contact') }}" class="active">Contact</a></li>
-            <li><a href="{{ url_for('main.social_work') }}">Social Work</a></li>
+            <li><a href="{{ url_for('main.index') }}">{{ _('Home') }}</a></li>
+            <li><a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a></li>
+            <li><a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a></li>
+            <li><a href="{{ url_for('main.about') }}">{{ _('About') }}</a></li>
+            <li><a href="{{ url_for('main.contact') }}" class="active">{{ _('Contact') }}</a></li>
+            <li><a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a></li>
+            <li><a href="{{ url_for('main.social_work') }}">{{ _('Social Work') }}</a></li>
         </ul>
-        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 File a Complaint</a>
+        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 {{ _('File a Complaint') }}</a>
         <div class="hamburger" id="hamburger">&#9776;</div>
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="{{ url_for('main.index') }}">🏠 Home</a>
-        <a href="{{ url_for('complaints.submit') }}">📝 Submit Complaint</a>
-        <a href="{{ url_for('complaints.track') }}">🔍 Track Complaint</a>
-        <a href="{{ url_for('main.about') }}">ℹ️ About</a>
-        <a href="{{ url_for('main.contact') }}" class="active">📞 Contact</a>
-        <a href="{{ url_for('auth.login') }}">🔐 Admin Login</a>
-        <a href="{{ url_for('main.social_work') }}">🖼️ Social Work</a>
-    
+        <a href="{{ url_for('main.index') }}">🏠 {{ _('Home') }}</a>
+        <a href="{{ url_for('complaints.submit') }}">📝 {{ _('Submit Complaint') }}</a>
+        <a href="{{ url_for('complaints.track') }}">🔍 {{ _('Track Complaint') }}</a>
+        <a href="{{ url_for('main.about') }}">ℹ️ {{ _('About') }}</a>
+        <a href="{{ url_for('main.contact') }}" class="active">📞 {{ _('Contact') }}</a>
+        <a href="{{ url_for('auth.login') }}">🔐 {{ _('Admin Login') }}</a>
+        <a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a>
+        <a href="{{ url_for('main.social_work') }}">🖼️ {{ _('Social Work') }}</a>
     </div>
 
     <section class="page-header">
         <div class="page-header-content">
-            <p class="section-tag">Reach Us</p>
-            <h1 class="page-title">Contact Us</h1>
-            <p class="page-subtitle">We're here to help. Reach out to us anytime.</p>
+            <p class="section-tag">{{ _('Reach Us') }}</p>
+            <h1 class="page-title">{{ _('Contact Us') }}</h1>
+            <p class="page-subtitle">{{ _("We're here to help. Reach out to us anytime.") }}</p>
         </div>
     </section>
 
@@ -57,27 +65,32 @@
         <div class="section-container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <p class="contact-intro-text">Have questions or want to reach the office directly? Here are all the ways you can contact us.</p>
+                    <h2 class="section-title">{{ _('Get In Touch') }}</h2>
+                    <p class="contact-intro-text">{{ _('Have questions or want to reach the office directly? Here are all the ways you can contact us.') }}</p>
 
                     <div class="contact-item">
                         <div class="contact-icon-box">📍</div>
-                        <div><h4>Office Address</h4><p>Chikuwadi, Near Joggers Park<br>Borivali, Mumbai - 400091</p></div>
+                        <div><h4>{{ _('Office Address') }}</h4><p>Chikuwadi, Near Joggers Park<br>Borivali, Mumbai - 400091</p></div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon-box">📞</div>
-                        <div><h4>Phone Number</h4><p>+91 9820871320</p><p class="contact-note">Mon – Sat, 9:00 AM to 6:00 PM</p></div>
+                        <div><h4>{{ _('Phone Number') }}</h4><p>+91 9820871320</p><p class="contact-note">{{ _('Mon – Sat, 9:00 AM to 6:00 PM') }}</p></div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon-box">✉️</div>
-                        <div><h4>Email Address</h4><p>vinodpandere.upvibhaghpramukh@gmail.com</p><p class="contact-note">We reply within 24 hours</p></div>
+                        <div><h4>{{ _('Email Address') }}</h4><p>vinodpandere.upvibhaghpramukh@gmail.com</p><p class="contact-note">{{ _('We reply within 24 hours') }}</p></div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon-box">🕐</div>
-                        <div><h4>Office Hours</h4><p>Monday – Friday: 9:00 AM – 6:00 PM</p><p>Saturday: 10:00 AM – 2:00 PM</p><p class="contact-note">Sunday: Closed</p></div>
+                        <div>
+                            <h4>{{ _('Office Hours') }}</h4>
+                            <p>{{ _('Monday – Friday: 9:00 AM – 6:00 PM') }}</p>
+                            <p>{{ _('Saturday: 10:00 AM – 2:00 PM') }}</p>
+                            <p class="contact-note">{{ _('Sunday: Closed') }}</p>
+                        </div>
                     </div>
                     <div class="social-links">
-                        <h4>Follow Us</h4>
+                        <h4>{{ _('Follow Us') }}</h4>
                         <div class="social-icons">
                             <a href="#" class="social-icon">📘 Facebook</a>
                             <a href="#" class="social-icon">💬 WhatsApp</a>
@@ -87,32 +100,32 @@
                 </div>
 
                 <div class="contact-form-box">
-                    <h2 class="section-title">Send a Message</h2>
-                    <p class="contact-intro-text">Not ready to file a complaint yet? Send us a general message.</p>
+                    <h2 class="section-title">{{ _('Send a Message') }}</h2>
+                    <p class="contact-intro-text">{{ _("Not ready to file a complaint yet? Send us a general message.") }}</p>
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label for="name">Full Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                            <label for="name">{{ _('Full Name') }} <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="{{ _('Enter your full name') }}" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <label for="phone">{{ _('Phone Number') }} <span class="required">*</span></label>
                                 <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address</label>
+                                <label for="email">{{ _('Email Address') }}</label>
                                 <input type="email" id="email" name="email" placeholder="your@email.com">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject <span class="required">*</span></label>
-                            <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
+                            <label for="subject">{{ _('Subject') }} <span class="required">*</span></label>
+                            <input type="text" id="subject" name="subject" placeholder="{{ _('What is this about?') }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message <span class="required">*</span></label>
-                            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                            <label for="message">{{ _('Message') }} <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" placeholder="{{ _('Write your message here...') }}" required></textarea>
                         </div>
-                        <button type="submit" class="btn-submit">Send Message ✉️</button>
+                        <button type="submit" class="btn-submit">{{ _('Send Message') }} ✉️</button>
                     </form>
                 </div>
             </div>
@@ -122,13 +135,13 @@
     <section class="map-section">
         <div class="section-container">
             <div class="section-header">
-                <p class="section-tag">Find Us</p>
-                <h2 class="section-title">Our Office Location</h2>
+                <p class="section-tag">{{ _('Find Us') }}</p>
+                <h2 class="section-title">{{ _('Our Office Location') }}</h2>
             </div>
             <div class="map-placeholder">
                 <span class="map-icon">📍</span>
                 <p>Chikuwadi, Near Joggers Park, Borivali, Mumbai - 400091</p>
-                <a href="https://maps.google.com" target="_blank" class="btn-primary" style="margin-top:8px;">Open in Google Maps</a>
+                <a href="https://maps.google.com" target="_blank" class="btn-primary" style="margin-top:8px;">{{ _('Open in Google Maps') }}</a>
             </div>
         </div>
     </section>
@@ -137,23 +150,23 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <span class="nav-logo-text">शिव <span>सेतू</span></span>
-                <p>Connecting citizens to solutions. Serving the community of Borivali, Mumbai.</p>
+                <p>{{ _('Connecting citizens to solutions. Serving Borivali, Mumbai.') }}</p>
             </div>
             <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="{{ url_for('main.index') }}">Home</a>
-                <a href="{{ url_for('complaints.submit') }}">Submit Complaint</a>
-                <a href="{{ url_for('complaints.track') }}">Track Complaint</a>
-                <a href="{{ url_for('main.about') }}">About</a>
+                <h4>{{ _('Quick Links') }}</h4>
+                <a href="{{ url_for('main.index') }}">{{ _('Home') }}</a>
+                <a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a>
+                <a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a>
+                <a href="{{ url_for('main.about') }}">{{ _('About') }}</a>
             </div>
             <div class="footer-links">
-                <h4>Contact</h4>
+                <h4>{{ _('Contact') }}</h4>
                 <p>📍 Chikuwadi, Borivali, Mumbai</p>
                 <p>📞 +91 9820871320</p>
                 <p>✉️ vinodpandere.upvibhaghpramukh@gmail.com</p>
             </div>
         </div>
-        <div class="footer-bottom"><p>© 2025 शिव सेतू. All rights reserved.</p></div>
+        <div class="footer-bottom"><p>© 2025 शिव सेतू. {{ _('All rights reserved.') }}</p></div>
     </footer>
 
     <script>
@@ -167,12 +180,12 @@
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const btn = this.querySelector('.btn-submit');
-                btn.textContent = '✅ Message Sent!';
+                btn.textContent = '✅ {{ _("Message Sent!") }}';
                 btn.style.background = 'var(--success)';
                 btn.disabled = true;
                 this.reset();
                 setTimeout(() => {
-                    btn.textContent = 'Send Message ✉️';
+                    btn.textContent = '{{ _("Send Message") }} ✉️';
                     btn.style.background = '';
                     btn.disabled = false;
                 }, 3000);

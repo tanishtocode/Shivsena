@@ -1,54 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ session.get('lang', 'en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Complaint - शिव सेतू</title>
+    <title>{{ _('Submit Complaint') }} - शिव सेतू</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo1.png') }}">
 </head>
 <body>
 
+<!-- 🌐 LANGUAGE SWITCH -->
+<div class="lang-switch">
+    <a href="{{ url_for('main.set_language', lang='en') }}">EN</a>
+    <a href="{{ url_for('main.set_language', lang='mr') }}">मराठी</a>
+</div>
+
     <div class="top-strip">
-        <p>🇮🇳 &nbsp;शिव सेतू — Connecting Citizens to Solutions</p>
+        <p>🇮🇳 &nbsp;{{ _('Shivsetu — Connecting Citizens to Solutions') }}</p>
         <div class="top-strip-right">
             <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
-            <a href="{{ url_for('auth.login') }}">Admin Login</a>
+            <a href="{{ url_for('auth.login') }}">{{ _('Admin Login') }}</a>
         </div>
     </div>
 
     <nav class="navbar">
         <a href="{{ url_for('main.index') }}" class="nav-logo">
-            <div class="nav-logo-icon">🔱</div>
+            <div class="nav-logo-icon">🏹</div>
             <span class="nav-logo-text">शिव <span>सेतू</span></span>
         </a>
         <ul class="nav-links">
-            <li><a href="{{ url_for('main.index') }}">Home</a></li>
-            <li><a href="{{ url_for('complaints.submit') }}" class="active">Submit Complaint</a></li>
-            <li><a href="{{ url_for('complaints.track') }}">Track Complaint</a></li>
-            <li><a href="{{ url_for('main.about') }}">About</a></li>
-            <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-            <li><a href="{{ url_for('main.social_work') }}">Social Work</a></li>
+            <li><a href="{{ url_for('main.index') }}">{{ _('Home') }}</a></li>
+            <li><a href="{{ url_for('complaints.submit') }}" class="active">{{ _('Submit Complaint') }}</a></li>
+            <li><a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a></li>
+            <li><a href="{{ url_for('main.about') }}">{{ _('About') }}</a></li>
+            <li><a href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
+            <li><a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a></li>
+            <li><a href="{{ url_for('main.social_work') }}">{{ _('Social Work') }}</a></li>
         </ul>
-        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 File a Complaint</a>
+        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 {{ _('File a Complaint') }}</a>
         <div class="hamburger" id="hamburger">&#9776;</div>
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="{{ url_for('main.index') }}">🏠 Home</a>
-        <a href="{{ url_for('complaints.submit') }}" class="active">📝 Submit Complaint</a>
-        <a href="{{ url_for('complaints.track') }}">🔍 Track Complaint</a>
-        <a href="{{ url_for('main.about') }}">ℹ️ About</a>
-        <a href="{{ url_for('main.contact') }}">📞 Contact</a>
-        <a href="{{ url_for('auth.login') }}">🔐 Admin Login</a>
-        <a href="{{ url_for('main.social_work') }}">🖼️ Social Work</a>
+        <a href="{{ url_for('main.index') }}">🏠 {{ _('Home') }}</a>
+        <a href="{{ url_for('complaints.submit') }}" class="active">📝 {{ _('Submit Complaint') }}</a>
+        <a href="{{ url_for('complaints.track') }}">🔍 {{ _('Track Complaint') }}</a>
+        <a href="{{ url_for('main.about') }}">ℹ️ {{ _('About') }}</a>
+        <a href="{{ url_for('main.contact') }}">📞 {{ _('Contact') }}</a>
+        <a href="{{ url_for('auth.login') }}">🔐 {{ _('Admin Login') }}</a>
+        <a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a>
+        <a href="{{ url_for('main.social_work') }}">🖼️ {{ _('Social Work') }}</a>
     </div>
 
     <section class="page-header">
         <div class="page-header-content">
-            <p class="section-tag">Raise Your Voice</p>
-            <h1 class="page-title">Submit a Complaint</h1>
-            <p class="page-subtitle">Fill in the details below. We will review and take action as soon as possible.</p>
+            <p class="section-tag">{{ _('Raise Your Voice') }}</p>
+            <h1 class="page-title">{{ _('Submit a Complaint') }}</h1>
+            <p class="page-subtitle">{{ _('Fill in the details below. We will review and take action as soon as possible.') }}</p>
         </div>
     </section>
 
@@ -56,21 +65,21 @@
         <div class="submit-container">
 
             <div class="submit-info">
-                <h3>Before You Submit</h3>
+                <h3>{{ _('Before You Submit') }}</h3>
                 <ul class="submit-tips">
-                    <li><span class="tip-icon">📝</span><span>Describe your problem clearly and in detail</span></li>
-                    <li><span class="tip-icon">📍</span><span>Mention exact location or area of the problem</span></li>
-                    <li><span class="tip-icon">📸</span><span>Attach a photo if possible — it helps resolve faster</span></li>
-                    <li><span class="tip-icon">📞</span><span>Provide correct contact so we can follow up</span></li>
-                    <li><span class="tip-icon">🎫</span><span>Save your Ticket ID after submission to track status</span></li>
+                    <li><span class="tip-icon">📝</span><span>{{ _('Describe your problem clearly and in detail') }}</span></li>
+                    <li><span class="tip-icon">📍</span><span>{{ _('Mention exact location or area of the problem') }}</span></li>
+                    <li><span class="tip-icon">📸</span><span>{{ _('Attach a photo if possible — it helps resolve faster') }}</span></li>
+                    <li><span class="tip-icon">📞</span><span>{{ _('Provide correct contact so we can follow up') }}</span></li>
+                    <li><span class="tip-icon">🎫</span><span>{{ _('Save your Ticket ID after submission to track status') }}</span></li>
                 </ul>
                 <div class="submit-note">
                     <span class="note-icon">ℹ️</span>
-                    <p>All complaints are reviewed within <strong>24 hours</strong>. Urgent issues like safety or water supply are prioritised.</p>
+                    <p>{{ _('All complaints are reviewed within') }} <strong>{{ _('24 hours') }}</strong>. {{ _('Urgent issues like safety or water supply are prioritised.') }}</p>
                 </div>
                 <div class="submit-contact-hint">
-                    <p>Need help filling the form?</p>
-                    <a href="{{ url_for('main.contact') }}">📞 Call our office</a>
+                    <p>{{ _('Need help filling the form?') }}</p>
+                    <a href="{{ url_for('main.contact') }}">📞 {{ _('Call our office') }}</a>
                 </div>
             </div>
 
@@ -84,89 +93,88 @@
                 {% endwith %}
 
                 <form class="submit-form" id="complaintForm" action="{{ url_for('complaints.submit') }}" method="POST" enctype="multipart/form-data">
-                    {# SECURITY FIX: CSRF token — protects against cross-site request forgery #}
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
                     <div class="form-section-title">
-                        <span class="form-step-badge">1</span> Personal Details
+                        <span class="form-step-badge">1</span> {{ _('Personal Details') }}
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="fullname">Full Name <span class="required">*</span></label>
-                            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                            <label for="fullname">{{ _('Full Name') }} <span class="required">*</span></label>
+                            <input type="text" id="fullname" name="fullname" placeholder="{{ _('Enter your full name') }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <label for="phone">{{ _('Phone Number') }} <span class="required">*</span></label>
                             <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email Address <span class="optional">(optional)</span></label>
+                        <label for="email">{{ _('Email Address') }} <span class="optional">({{ _('optional') }})</span></label>
                         <input type="email" id="email" name="email" placeholder="your@email.com">
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Your Address / Area <span class="required">*</span></label>
-                        <input type="text" id="address" name="address" placeholder="e.g. Chikuwadi, Ward 5, Near Joggers Park" required>
+                        <label for="address">{{ _('Your Address / Area') }} <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" placeholder="{{ _('e.g. Chikuwadi, Ward 5, Near Joggers Park') }}" required>
                     </div>
 
                     <div class="form-section-title">
-                        <span class="form-step-badge">2</span> Complaint Details
+                        <span class="form-step-badge">2</span> {{ _('Complaint Details') }}
                     </div>
 
                     <div class="form-group">
-                        <label for="category">Category <span class="required">*</span></label>
+                        <label for="category">{{ _('Category') }} <span class="required">*</span></label>
                         <select id="category" name="category" required>
-                            <option value="" disabled selected>Select a category</option>
-                            <option value="roads">🛣️ Roads & Infrastructure</option>
-                            <option value="water">🚰 Water Supply</option>
-                            <option value="electricity">💡 Electricity</option>
-                            <option value="sanitation">🗑️ Sanitation & Garbage</option>
-                            <option value="safety">🛡️ Safety & Security</option>
-                            <option value="other">📋 Other</option>
+                            <option value="" disabled selected>{{ _('Select a category') }}</option>
+                            <option value="roads">🛣️ {{ _('Roads & Infrastructure') }}</option>
+                            <option value="water">🚰 {{ _('Water Supply') }}</option>
+                            <option value="electricity">💡 {{ _('Electricity') }}</option>
+                            <option value="sanitation">🗑️ {{ _('Sanitation & Garbage') }}</option>
+                            <option value="safety">🛡️ {{ _('Safety & Security') }}</option>
+                            <option value="other">📋 {{ _('Other') }}</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="complaint_location">Exact Location of Problem <span class="required">*</span></label>
-                        <input type="text" id="complaint_location" name="complaint_location" placeholder="e.g. Near Bus Stop No. 12, Chikuwadi" required>
+                        <label for="complaint_location">{{ _('Exact Location of Problem') }} <span class="required">*</span></label>
+                        <input type="text" id="complaint_location" name="complaint_location" placeholder="{{ _('e.g. Near Bus Stop No. 12, Chikuwadi') }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Describe the Problem <span class="required">*</span></label>
-                        <textarea id="description" name="description" rows="5" placeholder="Explain the issue in detail. When did it start? How is it affecting you?" required></textarea>
-                        <span class="char-count" id="charCount">0 / 500 characters</span>
+                        <label for="description">{{ _('Describe the Problem') }} <span class="required">*</span></label>
+                        <textarea id="description" name="description" rows="5" placeholder="{{ _('Explain the issue in detail. When did it start? How is it affecting you?') }}" required></textarea>
+                        <span class="char-count" id="charCount">0 / 500 {{ _('characters') }}</span>
                     </div>
 
                     <div class="form-group">
-                        <label>Priority Level <span class="required">*</span></label>
+                        <label>{{ _('Priority Level') }} <span class="required">*</span></label>
                         <div class="priority-options">
                             <label class="priority-label">
                                 <input type="radio" name="priority" value="low" required>
-                                <span class="priority-btn">🟢 Low</span>
+                                <span class="priority-btn">🟢 {{ _('Low') }}</span>
                             </label>
                             <label class="priority-label">
                                 <input type="radio" name="priority" value="medium">
-                                <span class="priority-btn">🟡 Medium</span>
+                                <span class="priority-btn">🟡 {{ _('Medium') }}</span>
                             </label>
                             <label class="priority-label">
                                 <input type="radio" name="priority" value="high">
-                                <span class="priority-btn">🔴 High / Urgent</span>
+                                <span class="priority-btn">🔴 {{ _('High / Urgent') }}</span>
                             </label>
                         </div>
                     </div>
 
                     <div class="form-section-title">
-                        <span class="form-step-badge">3</span> Attach Photo <span class="optional">(optional)</span>
+                        <span class="form-step-badge">3</span> {{ _('Attach Photo') }} <span class="optional">({{ _('optional') }})</span>
                     </div>
 
                     <div class="form-group">
                         <div class="file-upload-area" id="fileUploadArea">
                             <span class="upload-icon">📎</span>
-                            <p>Click to upload or drag & drop</p>
-                            <p class="upload-hint">JPG, PNG up to 5MB</p>
+                            <p>{{ _('Click to upload or drag & drop') }}</p>
+                            <p class="upload-hint">{{ _('JPG, PNG up to 5MB') }}</p>
                             <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" class="file-input">
                         </div>
                         <p class="file-name" id="fileName"></p>
@@ -175,11 +183,11 @@
                     <div class="form-group">
                         <label class="checkbox-label">
                             <input type="checkbox" id="agree" name="agree" required>
-                            <span>I confirm that the information provided is true and accurate.</span>
+                            <span>{{ _('I confirm that the information provided is true and accurate.') }}</span>
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-submit-full">Submit Complaint 📝</button>
+                    <button type="submit" class="btn-submit-full">{{ _('Submit Complaint') }} 📝</button>
                 </form>
             </div>
         </div>
@@ -189,23 +197,23 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <span class="nav-logo-text">शिव <span>सेतू</span></span>
-                <p>Connecting citizens to solutions. Serving the community of Borivali, Mumbai.</p>
+                <p>{{ _('Connecting citizens to solutions. Serving Borivali, Mumbai.') }}</p>
             </div>
             <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="{{ url_for('main.index') }}">Home</a>
-                <a href="{{ url_for('complaints.submit') }}">Submit Complaint</a>
-                <a href="{{ url_for('complaints.track') }}">Track Complaint</a>
-                <a href="{{ url_for('main.about') }}">About</a>
+                <h4>{{ _('Quick Links') }}</h4>
+                <a href="{{ url_for('main.index') }}">{{ _('Home') }}</a>
+                <a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a>
+                <a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a>
+                <a href="{{ url_for('main.about') }}">{{ _('About') }}</a>
             </div>
             <div class="footer-links">
-                <h4>Contact</h4>
+                <h4>{{ _('Contact') }}</h4>
                 <p>📍 Chikuwadi, Borivali, Mumbai</p>
                 <p>📞 +91 9820871320</p>
                 <p>✉️ vinodpandere.upvibhaghpramukh@gmail.com</p>
             </div>
         </div>
-        <div class="footer-bottom"><p>© 2025 शिव सेतू. All rights reserved.</p></div>
+        <div class="footer-bottom"><p>© 2025 शिव सेतू. {{ _('All rights reserved.') }}</p></div>
     </footer>
 
     <script>
@@ -219,7 +227,7 @@
         if (description && charCount) {
             description.addEventListener('input', () => {
                 const len = description.value.length;
-                charCount.textContent = `${len} / 500 characters`;
+                charCount.textContent = `${len} / 500 {{ _('characters') }}`;
                 charCount.style.color = len > 450 ? 'var(--saffron)' : 'var(--text-muted)';
             });
         }
