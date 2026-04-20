@@ -1,169 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ session.get('lang', 'en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>शिव सेतू - Community Complaints Portal</title>
+    <title>{{ _('Shivsetu - Community Complaints Portal') }}</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo1.png') }}">
 </head>
+
 <body>
 
-    <div class="top-strip">
-        <p>🇮🇳 &nbsp;शिव सेतू — Connecting Citizens to Solutions</p>
-        <div class="top-strip-right">
-            <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
-            <a href="{{ url_for('auth.login') }}">Admin Login</a>
-        </div>
+<!-- 🌐 LANGUAGE SWITCH -->
+<div class="lang-switch">
+    <a href="{{ url_for('main.set_language', lang='en') }}">EN</a>
+    <a href="{{ url_for('main.set_language', lang='mr') }}">मराठी</a>
+</div>
+
+<div class="top-strip">
+    <p>🇮🇳 {{ _('Shivsetu — Connecting Citizens to Solutions') }}</p>
+    <div class="top-strip-right">
+        <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
+        <a href="{{ url_for('auth.login') }}">{{ _('Admin Login') }}</a>
     </div>
+</div>
 
-    <nav class="navbar">
-        <a href="{{ url_for('main.index') }}" class="nav-logo">
-            <div class="nav-logo-icon">🔱</div>
-            <span class="nav-logo-text">शिव <span>सेतू</span></span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="{{ url_for('main.index') }}" class="active">Home</a></li>
-            <li><a href="{{ url_for('complaints.submit') }}">Submit Complaint</a></li>
-            <li><a href="{{ url_for('complaints.track') }}">Track Complaint</a></li>
-            <li><a href="{{ url_for('main.about') }}">About</a></li>
-            <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-            <li><a href="{{ url_for('main.helplines') }}">Helplines</a></li>
-            <li><a href="{{ url_for('main.social_work') }}">Social Work</a></li>
-        </ul>
-        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 File a Complaint</a>
-        <div class="hamburger" id="hamburger">&#9776;</div>
-    </nav>
+<nav class="navbar">
+    <a href="{{ url_for('main.index') }}" class="nav-logo">
+        <div class="nav-logo-icon">🔱</div>
+        <span class="nav-logo-text">शिव <span>सेतू</span></span>
+    </a>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="{{ url_for('main.index') }}" class="active">🏠 Home</a>
-        <a href="{{ url_for('complaints.submit') }}">📝 Submit Complaint</a>
-        <a href="{{ url_for('complaints.track') }}">🔍 Track Complaint</a>
-        <a href="{{ url_for('main.about') }}">ℹ️ About</a>
-        <a href="{{ url_for('main.contact') }}">📞 Contact</a>
-        <a href="{{ url_for('auth.login') }}">🔐 Admin Login</a>
-        <a href="{{ url_for('main.helplines') }}">Helplines</a>
-        <a href="{{ url_for('main.social_work') }}">🖼️ Social Work</a>
-    </div>
+    <ul class="nav-links">
+        <li><a href="{{ url_for('main.index') }}" class="active">{{ _('Home') }}</a></li>
+        <li><a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a></li>
+        <li><a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a></li>
+        <li><a href="{{ url_for('main.about') }}">{{ _('About') }}</a></li>
+        <li><a href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
+        <li><a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a></li>
+        <li><a href="{{ url_for('main.social_work') }}">{{ _('Social Work') }}</a></li>
+    </ul>
 
-    <section class="hero">
+    <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 {{ _('File a Complaint') }}</a>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="{{ url_for('main.index') }}" class="active">🏠 {{ _('Home') }}</a>
+    <a href="{{ url_for('complaints.submit') }}">📝 {{ _('Submit Complaint') }}</a>
+    <a href="{{ url_for('complaints.track') }}">🔍 {{ _('Track Complaint') }}</a>
+    <a href="{{ url_for('main.about') }}">ℹ️ {{ _('About') }}</a>
+    <a href="{{ url_for('main.contact') }}">📞 {{ _('Contact') }}</a>
+    <a href="{{ url_for('auth.login') }}">🔐 {{ _('Admin Login') }}</a>
+    <a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a>
+    <a href="{{ url_for('main.social_work') }}">🖼️ {{ _('Social Work') }}</a>
+</div>
+
+<section class="hero">
     <div class="hero-bg-pattern"></div>
 
     <div class="hero-wrapper">
         <div class="hero-content">
-            <div class="hero-badge">🇮🇳 &nbsp;Serving Maharashtra | जन सेवा जन अधिकार</div>
-            <h1 class="hero-title">Your Voice,<br><span>Your Right</span></h1>
-            <p class="hero-subtitle">Submit complaints about local issues — roads, water, electricity, safety and more. We connect citizens directly to the right authorities for faster resolution.</p>
+            <div class="hero-badge">🇮🇳 {{ _('Serving Maharashtra | Public Service') }}</div>
+
+            <h1 class="hero-title">
+                {{ _('Your Voice,') }}<br>
+                <span>{{ _('Your Right') }}</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                {{ _('Submit complaints about local issues like roads, water, electricity, safety and more. We connect citizens directly to the right authorities.') }}
+            </p>
 
             <div class="hero-buttons">
-                <a href="{{ url_for('complaints.submit') }}" class="btn-primary">📝 Submit a Complaint</a>
-                <a href="{{ url_for('complaints.track') }}" class="btn-secondary">🔍 Track Your Complaint</a>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat"><span class="stat-number">1,240+</span><span class="stat-label">Complaints Resolved</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Response Rate</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><span class="stat-number">5,000+</span><span class="stat-label">People Helped</span></div>
+                <a href="{{ url_for('complaints.submit') }}" class="btn-primary">
+                    📝 {{ _('Submit a Complaint') }}
+                </a>
+                <a href="{{ url_for('complaints.track') }}" class="btn-secondary">
+                    🔍 {{ _('Track Your Complaint') }}
+                </a>
             </div>
         </div>
-
-        <div class="hero-gallery-box">
-    {% if social_works %}
-    <div class="hero-slider" id="heroSlider">
-        {% for work in social_works %}
-        <div class="hero-slide {% if loop.first %}active{% endif %}">
-            <img src="{{ url_for('static', filename=work.image_file) }}" alt="{{ work.title or 'Social Work Activity' }}">
-            <div class="hero-slide-overlay">
-                <h3>{{ work.title }}</h3>
-                <p>{{ work.description }}</p>
-            </div>
-        </div>
-        {% endfor %}
-
-        <button class="slider-btn prev" id="prevSlide">❮</button>
-        <button class="slider-btn next" id="nextSlide">❯</button>
-    </div>
-
-    <div class="hero-gallery-footer">
-        <a href="{{ url_for('main.social_work') }}" class="btn-secondary gallery-btn">View Full Gallery</a>
-    </div>
-    {% else %}
-    <div class="hero-gallery-placeholder">
-        <div class="placeholder-icon">🖼️</div>
-        <h3>Public Work Gallery</h3>
-        <p>Upload social work images from admin panel to display here.</p>
-    </div>
-    {% endif %}
-</div>
     </div>
 </section>
 
-    <section class="categories">
-        <div class="section-container">
-            <div class="section-header">
-                <p class="section-tag">What We Handle</p>
-                <h2 class="section-title">Complaint Categories</h2>
-                <p class="section-subtitle">We handle all types of local community issues</p>
-            </div>
-            <div class="category-grid">
-                <a href="{{ url_for('complaints.submit') }}" class="category-card"><div class="category-icon">🛣️</div><h3>Roads & Infrastructure</h3><p>Potholes, broken roads, drainage issues</p></a>
-                <a href="{{ url_for('complaints.submit') }}" class="category-card"><div class="category-icon">🚰</div><h3>Water Supply</h3><p>No water, dirty water, pipeline leaks</p></a>
-                <a href="{{ url_for('complaints.submit') }}" class="category-card"><div class="category-icon">💡</div><h3>Electricity</h3><p>Power cuts, broken street lights, wiring issues</p></a>
-                <a href="{{ url_for('complaints.submit') }}" class="category-card"><div class="category-icon">🗑️</div><h3>Sanitation</h3><p>Garbage collection, open drains, cleanliness</p></a>
-                <a href="{{ url_for('complaints.submit') }}" class="category-card"><div class="category-icon">🛡️</div><h3>Safety & Security</h3><p>Street crimes, unsafe areas, harassment</p></a>
-                <a href="{{ url_for('complaints.submit') }}" class="category-card"><div class="category-icon">📋</div><h3>Other Issues</h3><p>Any other community problems</p></a>
-            </div>
+<section class="categories">
+    <div class="section-container">
+        <div class="section-header">
+            <p class="section-tag">{{ _('What We Handle') }}</p>
+            <h2 class="section-title">{{ _('Complaint Categories') }}</h2>
+            <p class="section-subtitle">{{ _('We handle all types of local community issues') }}</p>
         </div>
-    </section>
 
-    <section class="cta-banner">
-        <div class="cta-content">
-            <h2>Have a Problem in Your Area?</h2>
-            <p>Don't stay silent. Your complaint can make a difference for the whole community.</p>
-            <a href="{{ url_for('complaints.submit') }}" class="btn-primary">Submit Your Complaint Now</a>
+        <div class="category-grid">
+            <a href="{{ url_for('complaints.submit') }}" class="category-card">
+                <h3>{{ _('Roads & Infrastructure') }}</h3>
+            </a>
+
+            <a href="{{ url_for('complaints.submit') }}" class="category-card">
+                <h3>{{ _('Water Supply') }}</h3>
+            </a>
+
+            <a href="{{ url_for('complaints.submit') }}" class="category-card">
+                <h3>{{ _('Electricity') }}</h3>
+            </a>
+
+            <a href="{{ url_for('complaints.submit') }}" class="category-card">
+                <h3>{{ _('Sanitation') }}</h3>
+            </a>
+
+            <a href="{{ url_for('complaints.submit') }}" class="category-card">
+                <h3>{{ _('Safety & Security') }}</h3>
+            </a>
+
+            <a href="{{ url_for('complaints.submit') }}" class="category-card">
+                <h3>{{ _('Other Issues') }}</h3>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <span class="nav-logo-text">शिव <span>सेतू</span></span>
-                <p>Connecting citizens to solutions. Serving the community of Borivali, Mumbai with transparency and accountability.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="{{ url_for('main.index') }}">Home</a>
-                <a href="{{ url_for('complaints.submit') }}">Submit Complaint</a>
-                <a href="{{ url_for('complaints.track') }}">Track Complaint</a>
-                <a href="{{ url_for('main.about') }}">About</a>
-                <a href="{{ url_for('main.contact') }}">Contact</a>
-            </div>
-            <div class="footer-links">
-                <h4>Contact</h4>
-                <p>📍 Chikuwadi, Borivali, Mumbai</p>
-                <p>📞 +91 9820871320</p>
-                <p>✉️ vinodpandere.upvibhaghpramukh@gmail.com</p>
-                <p>🕐 Mon–Sat: 9AM – 6PM</p>
-            </div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <span class="nav-logo-text">शिव <span>सेतू</span></span>
+            <p>{{ _('Connecting citizens to solutions. Serving Borivali, Mumbai.') }}</p>
         </div>
-        <div class="footer-bottom"><p>© 2025 शिव सेतू. All rights reserved. | Designed for the people of Borivali, Mumbai</p></div>
-    </footer>
+    </div>
 
-    <script>
-        
+    <div class="footer-bottom">
+        <p>© 2025 शिव सेतू. {{ _('All rights reserved.') }}</p>
+    </div>
+</footer>
 
-         const hamburger = document.getElementById('hamburger');
-         
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
 
-         const mobileMenu = document.getElementById('mobileMenu');
-         if (hamburger && mobileMenu) {
-             hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-             }
-
+if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+}
 </script>
+
 <script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+
 </body>
 </html>
