@@ -1,192 +1,153 @@
-<!DOCTYPE html>
-<html lang="{{ session.get('lang', 'en') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ _('About') }} - शिव सेतू</title>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo1.png') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-<!-- 🌐 LANGUAGE SWITCH -->
-<div class="lang-switch">
-    <a href="{{ url_for('main.set_language', lang='en') }}">EN</a>
-    <a href="{{ url_for('main.set_language', lang='mr') }}">मराठी</a>
-</div>
+{% block title %}{{ _('About') }} - शिव सेतू{% endblock %}
 
-    <div class="top-strip">
-        <p>🇮🇳 &nbsp;{{ _('Shivsetu — Connecting Citizens to Solutions') }}</p>
-        <div class="top-strip-right">
-            <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
-            <a href="{{ url_for('auth.login') }}">{{ _('Admin Login') }}</a>
+{% block extra_css %}
+<style>
+    /* Profile Photo */
+    .profile-avatar {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--gold);
+        box-shadow: 0 8px 28px rgba(140,58,9,0.22);
+        flex-shrink: 0;
+        background: var(--cream-dark);
+    }
+    .profile-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+    }
+    .profile-verified {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--success);
+        background: #e8f8ef;
+        border: 1px solid #a8dfc0;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-top: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="page-header-content">
+        <p class="section-tag">{{ _('Who We Are') }}</p>
+        <h1 class="page-title">{{ _('About Shiv Setu') }}</h1>
+        <p class="page-subtitle">{{ _('A platform built to bridge the gap between citizens and local authorities') }}</p>
+    </div>
+</section>
+
+<section class="about-intro">
+    <div class="section-container">
+        <div class="about-grid">
+            <div class="about-text">
+                <p class="section-tag">{{ _('Our Story') }}</p>
+                <h2 class="section-title">{{ _('Why Shiv Setu Was Created') }}</h2>
+                <p>{{ _('Shiv Setu was founded by a dedicated social worker who saw people in the community struggling to get their basic problems heard and resolved.') }}</p>
+                <p>{{ _('From broken roads to water supply issues, people often had nowhere to go or no easy way to follow up.') }}</p>
+                <p>{{ _('This platform was created to give every citizen a simple, accessible way to raise their voice — and to make sure that voice is heard by the right people.') }}</p>
+                <p>{{ _('We believe a strong community is built when its people have the tools to speak up and when those in power are held accountable.') }}</p>
+                <a href="{{ url_for('main.contact') }}" class="btn-primary" style="margin-top:20px;">{{ _('Get in Touch') }}</a>
+            </div>
+            <div class="about-image-box">
+                <div class="about-image-placeholder">
+                    <span class="about-big-icon">🤝</span>
+                    <p>{{ _('Serving the Community Since 2020') }}</p>
+                </div>
+                <div class="about-badge-card">
+                    <span class="badge-icon">🏆</span>
+                    <div>
+                        <p class="badge-title">{{ _('Trusted by 5,000+') }}</p>
+                        <p class="badge-sub">{{ _('citizens in our locality') }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</section>
 
-    <nav class="navbar">
-        <a href="{{ url_for('main.index') }}" class="nav-logo">
-            <div class="nav-logo-icon">🏹</div>
-            <span class="nav-logo-text">शिव <span>सेतू</span></span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="{{ url_for('main.index') }}">{{ _('Home') }}</a></li>
-            <li><a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a></li>
-            <li><a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a></li>
-            <li><a href="{{ url_for('main.about') }}" class="active">{{ _('About') }}</a></li>
-            <li><a href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
-            <li><a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a></li>
-            <li><a href="{{ url_for('main.social_work') }}">{{ _('Social Work') }}</a></li>
-        </ul>
-        <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 {{ _('File a Complaint') }}</a>
-        <div class="hamburger" id="hamburger">&#9776;</div>
-    </nav>
-
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="{{ url_for('main.index') }}">🏠 {{ _('Home') }}</a>
-        <a href="{{ url_for('complaints.submit') }}">📝 {{ _('Submit Complaint') }}</a>
-        <a href="{{ url_for('complaints.track') }}">🔍 {{ _('Track Complaint') }}</a>
-        <a href="{{ url_for('main.about') }}" class="active">ℹ️ {{ _('About') }}</a>
-        <a href="{{ url_for('main.contact') }}">📞 {{ _('Contact') }}</a>
-        <a href="{{ url_for('auth.login') }}">🔐 {{ _('Admin Login') }}</a>
-        <a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a>
-        <a href="{{ url_for('main.social_work') }}">🖼️ {{ _('Social Work') }}</a>
+<section class="about-stats">
+    <div class="section-container">
+        <div class="stats-grid">
+            <div class="stats-card"><span class="stats-number">1,240+</span><span class="stats-label">{{ _('Complaints Resolved') }}</span></div>
+            <div class="stats-card"><span class="stats-number">5,000+</span><span class="stats-label">{{ _('Citizens Helped') }}</span></div>
+            <div class="stats-card"><span class="stats-number">100%</span><span class="stats-label">{{ _('Response Rate') }}</span></div>
+            <div class="stats-card"><span class="stats-number">4+</span><span class="stats-label">{{ _('Years of Service') }}</span></div>
+        </div>
     </div>
+</section>
 
-    <section class="page-header">
-        <div class="page-header-content">
-            <p class="section-tag">{{ _('Who We Are') }}</p>
-            <h1 class="page-title">{{ _('About Shiv Setu') }}</h1>
-            <p class="page-subtitle">{{ _('A platform built to bridge the gap between citizens and local authorities') }}</p>
+<section class="mission-section">
+    <div class="section-container">
+        <div class="section-header">
+            <p class="section-tag">{{ _('Our Purpose') }}</p>
+            <h2 class="section-title">{{ _('Mission, Vision & Values') }}</h2>
         </div>
-    </section>
-
-    <section class="about-intro">
-        <div class="section-container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <p class="section-tag">{{ _('Our Story') }}</p>
-                    <h2 class="section-title">{{ _('Why Shiv Setu Was Created') }}</h2>
-                    <p>{{ _('Shiv Setu was founded by a dedicated social worker who saw people in the community struggling to get their basic problems heard and resolved.') }}</p>
-                    <p>{{ _('From broken roads to water supply issues, people often had nowhere to go or no easy way to follow up.') }}</p>
-                    <p>{{ _('This platform was created to give every citizen a simple, accessible way to raise their voice — and to make sure that voice is heard by the right people.') }}</p>
-                    <p>{{ _('We believe a strong community is built when its people have the tools to speak up and when those in power are held accountable.') }}</p>
-                    <a href="{{ url_for('main.contact') }}" class="btn-primary" style="margin-top:20px;">{{ _('Get in Touch') }}</a>
-                </div>
-                <div class="about-image-box">
-                    <div class="about-image-placeholder">
-                        <span class="about-big-icon">🤝</span>
-                        <p>{{ _('Serving the Community Since 2020') }}</p>
-                    </div>
-                    <div class="about-badge-card">
-                        <span class="badge-icon">🏆</span>
-                        <div><p class="badge-title">{{ _('Trusted by 5,000+') }}</p><p class="badge-sub">{{ _('citizens in our locality') }}</p></div>
-                    </div>
-                </div>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <div class="mission-icon">🎯</div>
+                <h3>{{ _('Our Mission') }}</h3>
+                <p>{{ _('To provide every citizen in our locality a simple and effective way to report local issues and ensure they are addressed in a timely and transparent manner.') }}</p>
+            </div>
+            <div class="mission-card accent-card">
+                <div class="mission-icon">🔭</div>
+                <h3>{{ _('Our Vision') }}</h3>
+                <p>{{ _('A community where every resident feels heard, every problem gets attention, and local authorities are accountable to the people they serve.') }}</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">💎</div>
+                <h3>{{ _('Our Values') }}</h3>
+                <p>{{ _('Transparency, accountability, and genuine care for the community are at the heart of everything we do at Shiv Setu.') }}</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="about-stats">
-        <div class="section-container">
-            <div class="stats-grid">
-                <div class="stats-card"><span class="stats-number">1,240+</span><span class="stats-label">{{ _('Complaints Resolved') }}</span></div>
-                <div class="stats-card"><span class="stats-number">5,000+</span><span class="stats-label">{{ _('Citizens Helped') }}</span></div>
-                <div class="stats-card"><span class="stats-number">100%</span><span class="stats-label">{{ _('Response Rate') }}</span></div>
-                <div class="stats-card"><span class="stats-number">4+</span><span class="stats-label">{{ _('Years of Service') }}</span></div>
-            </div>
+<section class="profile-section">
+    <div class="section-container">
+        <div class="section-header">
+            <p class="section-tag">{{ _('The Person Behind It') }}</p>
+            <h2 class="section-title">{{ _('Meet Our Social Worker') }}</h2>
+            <p class="section-subtitle">{{ _('Dedicated to serving the community for over 4 years') }}</p>
         </div>
-    </section>
-
-    <section class="mission-section">
-        <div class="section-container">
-            <div class="section-header">
-                <p class="section-tag">{{ _('Our Purpose') }}</p>
-                <h2 class="section-title">{{ _('Mission, Vision & Values') }}</h2>
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <img src="{{ url_for('static', filename='images/soo.png') }}"
+     alt="Vinod Pandurang Pandere">
             </div>
-            <div class="mission-grid">
-                <div class="mission-card">
-                    <div class="mission-icon">🎯</div>
-                    <h3>{{ _('Our Mission') }}</h3>
-                    <p>{{ _('To provide every citizen in our locality a simple and effective way to report local issues and ensure they are addressed in a timely and transparent manner.') }}</p>
-                </div>
-                <div class="mission-card accent-card">
-                    <div class="mission-icon">🔭</div>
-                    <h3>{{ _('Our Vision') }}</h3>
-                    <p>{{ _('A community where every resident feels heard, every problem gets attention, and local authorities are accountable to the people they serve.') }}</p>
-                </div>
-                <div class="mission-card">
-                    <div class="mission-icon">💎</div>
-                    <h3>{{ _('Our Values') }}</h3>
-                    <p>{{ _('Transparency, accountability, and genuine care for the community are at the heart of everything we do at Shiv Setu.') }}</p>
+            <div class="profile-info">
+                <h3 class="profile-name">Vinod Pandurang Pandere</h3>
+                <p class="profile-role">{{ _('Community Social Worker & Local Activist') }}</p>
+                <span class="profile-verified">✔ {{ _('Verified Community Worker') }}</span>
+                <p class="profile-bio" style="margin-top:12px;">{{ _('With over 4 years of experience working at the grassroots level, Vinod has helped thousands of citizens resolve issues related to infrastructure, civic amenities, and local governance. He works closely with municipal authorities and NGOs to bring real change to the community of Borivali, Mumbai.') }}</p>
+                <div class="profile-tags">
+                    <span class="tag">{{ _('Community Welfare') }}</span>
+                    <span class="tag">{{ _('Local Governance') }}</span>
+                    <span class="tag">{{ _('Infrastructure') }}</span>
+                    <span class="tag">{{ _('Legal Aid') }}</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="profile-section">
-        <div class="section-container">
-            <div class="section-header">
-                <p class="section-tag">{{ _('The Person Behind It') }}</p>
-                <h2 class="section-title">{{ _('Meet Our Social Worker') }}</h2>
-                <p class="section-subtitle">{{ _('Dedicated to serving the community for over 4 years') }}</p>
-            </div>
-            <div class="profile-card">
-                <div class="profile-avatar">👨‍💼</div>
-                <div class="profile-info">
-                    <h3 class="profile-name">Vinod Pandurang Pandere</h3>
-                    <p class="profile-role">{{ _('Community Social Worker & Local Activist') }}</p>
-                    <p class="profile-bio">{{ _('With over 4 years of experience working at the grassroots level, Vinod has helped thousands of citizens resolve issues related to infrastructure, civic amenities, and local governance. He works closely with municipal authorities and NGOs to bring real change to the community of Borivali, Mumbai.') }}</p>
-                    <div class="profile-tags">
-                        <span class="tag">{{ _('Community Welfare') }}</span>
-                        <span class="tag">{{ _('Local Governance') }}</span>
-                        <span class="tag">{{ _('Infrastructure') }}</span>
-                        <span class="tag">{{ _('Legal Aid') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="cta-banner">
+    <div class="cta-content">
+        <h2>{{ _('Have a Problem in Your Area?') }}</h2>
+        <p>{{ _("Don't stay silent. Your complaint can make a difference for the whole community.") }}</p>
+        <a href="{{ url_for('complaints.submit') }}" class="btn-primary">{{ _('Submit Your Complaint Now') }}</a>
+    </div>
+</section>
 
-    <section class="cta-banner">
-        <div class="cta-content">
-            <h2>{{ _('Have a Problem in Your Area?') }}</h2>
-            <p>{{ _("Don't stay silent. Your complaint can make a difference for the whole community.") }}</p>
-            <a href="{{ url_for('complaints.submit') }}" class="btn-primary">{{ _('Submit Your Complaint Now') }}</a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <span class="nav-logo-text">शिव <span>सेतू</span></span>
-                <p>{{ _('Connecting citizens to solutions. Serving Borivali, Mumbai.') }}</p>
-            </div>
-            <div class="footer-links">
-                <h4>{{ _('Quick Links') }}</h4>
-                <a href="{{ url_for('main.index') }}">{{ _('Home') }}</a>
-                <a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a>
-                <a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a>
-                <a href="{{ url_for('main.about') }}">{{ _('About') }}</a>
-                <a href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a>
-            </div>
-            <div class="footer-links">
-                <h4>{{ _('Contact') }}</h4>
-                <p>📍 Chikuwadi, Borivali, Mumbai</p>
-                <p>📞 +91 9820871320</p>
-                <p>✉️ vinodpandere.upvibhaghpramukh@gmail.com</p>
-                <p>🕐 {{ _('Mon–Sat: 9AM – 6PM') }}</p>
-            </div>
-        </div>
-        <div class="footer-bottom"><p>© 2025 शिव सेतू. {{ _('All rights reserved.') }}</p></div>
-    </footer>
-
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (hamburger && mobileMenu) {
-            hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-        }
-    </script>
-</body>
-</html>
+{% endblock %}

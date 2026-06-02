@@ -1,78 +1,276 @@
-<!DOCTYPE html>
-<html lang="{{ session.get('lang', 'en') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ _('Shivsetu - Community Complaints Portal') }}</title>
+{% extends "base.html" %}
 
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo1.png') }}">
-</head>
+{% block title %}{{ _('Shivsetu - Community Complaints Portal') }}{% endblock %}
 
-<body>
+{% block extra_css %}
+<style>
+/* ── Photo Gallery Section ─────────────────── */
+.gallery-home-section {
+    padding: 56px 5%;
+    background: var(--cream-dark);
+}
+.gallery-home-box {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--border-strong);
+    overflow: hidden;
+}
 
-<!-- 🌐 LANGUAGE SWITCH -->
-<div class="lang-switch">
-    <a href="{{ url_for('main.set_language', lang='en') }}">EN</a>
-    <a href="{{ url_for('main.set_language', lang='mr') }}">मराठी</a>
-</div>
+/* Scrollable photo strip */
+.gallery-strip-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+}
+.gallery-strip-wrap::-webkit-scrollbar { display: none; }
 
-<div class="top-strip">
-    <p>🇮🇳 {{ _('Shivsetu — Connecting Citizens to Solutions') }}</p>
-    <div class="top-strip-right">
-        <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
-        <a href="{{ url_for('auth.login') }}">{{ _('Admin Login') }}</a>
-    </div>
-</div>
+.gallery-strip {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    width: max-content;
+}
 
-<nav class="navbar">
-    <a href="{{ url_for('main.index') }}" class="nav-logo">
-        <div class="nav-logo-icon">🏹</div>
-        <span class="nav-logo-text">शिव <span>सेतू</span></span>
-    </a>
+/* Each photo card in strip */
+.gallery-strip-item {
+    position: relative;
+    width: 260px;
+    height: 200px;
+    flex-shrink: 0;
+    overflow: hidden;
+    cursor: pointer;
+    border-right: 2px solid var(--border);
+}
+.gallery-strip-item:last-child { border-right: none; }
 
-    <ul class="nav-links">
-        <li><a href="{{ url_for('main.index') }}" class="active">{{ _('Home') }}</a></li>
-        <li><a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a></li>
-        <li><a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a></li>
-        <li><a href="{{ url_for('main.about') }}">{{ _('About') }}</a></li>
-        <li><a href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
-        <li><a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a></li>
-        <li><a href="{{ url_for('main.social_work') }}">{{ _('Social Work') }}</a></li>
-    </ul>
+.gallery-strip-item img,
+.gallery-strip-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.35s ease;
+}
+.gallery-strip-item:hover img,
+.gallery-strip-item:hover video {
+    transform: scale(1.06);
+}
 
-    <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 {{ _('File a Complaint') }}</a>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-</nav>
+/* Caption on hover */
+.strip-item-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+    padding: 28px 12px 10px;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+.gallery-strip-item:hover .strip-item-caption { opacity: 1; }
+.strip-item-caption h4 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 0;
+}
+.strip-item-caption span {
+    font-size: 0.72rem;
+    opacity: 0.80;
+}
 
-<div class="mobile-menu" id="mobileMenu">
-    <a href="{{ url_for('main.index') }}" class="active">🏠 {{ _('Home') }}</a>
-    <a href="{{ url_for('complaints.submit') }}">📝 {{ _('Submit Complaint') }}</a>
-    <a href="{{ url_for('complaints.track') }}">🔍 {{ _('Track Complaint') }}</a>
-    <a href="{{ url_for('main.about') }}">ℹ️ {{ _('About') }}</a>
-    <a href="{{ url_for('main.contact') }}">📞 {{ _('Contact') }}</a>
-    <a href="{{ url_for('auth.login') }}">🔐 {{ _('Admin Login') }}</a>
-    <a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a>
-    <a href="{{ url_for('main.social_work') }}">🖼️ {{ _('Social Work') }}</a>
-</div>
+/* Featured badge on first item */
+.strip-featured-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: linear-gradient(135deg, var(--gold), #e6a800);
+    color: var(--white);
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+/* Scroll arrows */
+.gallery-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    border: 2px solid var(--border-strong);
+    color: var(--navy);
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(140,58,9,0.18);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    padding: 0;
+}
+.gallery-scroll-btn:hover {
+    background: var(--saffron);
+    color: #fff;
+    transform: translateY(-50%) scale(1.08);
+}
+.gallery-scroll-left  { left: 10px; }
+.gallery-scroll-right { right: 10px; }
+
+/* Counter bar at bottom */
+.gallery-strip-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--surface-warm);
+}
+.gallery-strip-count {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+.gallery-strip-cta {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--saffron);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+.gallery-strip-cta:hover { color: var(--saffron-dark); }
+
+/* Empty state */
+.gallery-empty-state {
+    padding: 56px 24px;
+    text-align: center;
+}
+.gallery-empty-state .empty-icon { font-size: 3rem; margin-bottom: 14px; }
+.gallery-empty-state h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+.gallery-empty-state p { font-size: 0.85rem; color: var(--text-muted); }
+
+/* Lightbox */
+.gallery-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.90);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+.gallery-lightbox.open { display: flex; }
+.lightbox-inner {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background: #111;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+.lightbox-media img,
+.lightbox-media video {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+}
+.lightbox-info {
+    padding: 12px 16px;
+    background: #1a1a1a;
+    color: #eee;
+}
+.lightbox-info h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 2px;
+}
+.lightbox-info p { font-size: 0.82rem; color: #aaa; }
+.lightbox-close {
+    position: absolute;
+    top: 10px; right: 12px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    border: none;
+    font-size: 1.4rem;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    line-height: 1;
+}
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 0;
+    line-height: 1;
+    transition: background 0.2s;
+}
+.lightbox-prev:hover, .lightbox-next:hover { background: rgba(242,106,33,0.65); }
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+
+/* Mobile */
+@media (max-width: 600px) {
+    .gallery-strip-item { width: 200px; height: 155px; }
+    .gallery-scroll-btn { display: none; } /* arrows hidden on mobile — swipe instead */
+    .strip-item-caption { opacity: 1; } /* always visible on mobile */
+}
+</style>
+{% endblock %}
+
+{% block content %}
 
 <section class="hero">
     <div class="hero-bg-pattern"></div>
-
     <div class="hero-wrapper">
         <div class="hero-content">
             <div class="hero-badge">🇮🇳 {{ _('Serving Maharashtra | Public Service') }}</div>
-
             <h1 class="hero-title">
                 {{ _('Your Voice,') }}<br>
                 <span>{{ _('Your Right') }}</span>
             </h1>
-
             <p class="hero-subtitle">
                 {{ _('Submit complaints about local issues like roads, water, electricity, safety and more. We connect citizens directly to the right authorities.') }}
             </p>
-
             <div class="hero-buttons">
                 <a href="{{ url_for('complaints.submit') }}" class="btn-primary">
                     📝 {{ _('Submit a Complaint') }}
@@ -85,6 +283,77 @@
     </div>
 </section>
 
+<!-- ══ PHOTO GALLERY SECTION ══ -->
+<section class="gallery-home-section">
+    <div class="section-container">
+        <div class="section-header">
+            <p class="section-tag">{{ _('Our Work') }}</p>
+            <h2 class="section-title">{{ _('Social Work Gallery') }}</h2>
+            <p class="section-subtitle">{{ _('Real work done for the community of Borivali, Mumbai') }}</p>
+        </div>
+
+        <div class="gallery-home-box">
+
+            {% if social_works %}
+
+            <!-- Scroll LEFT button -->
+            <button class="gallery-scroll-btn gallery-scroll-left" id="galleryLeft" aria-label="Scroll left">&#8249;</button>
+
+            <!-- Photo strip (all photos visible, scroll horizontally) -->
+            <div class="gallery-strip-wrap" id="galleryStrip">
+                <div class="gallery-strip">
+                    {% for work in social_works %}
+                    <div class="gallery-strip-item" data-index="{{ loop.index0 }}" onclick="openLightbox({{ loop.index0 }})">
+                        {% if work.is_featured and loop.first %}
+                        <span class="strip-featured-badge">⭐ {{ _('Featured') }}</span>
+                        {% endif %}
+
+                        {% if work.media_type == 'video' %}
+                            <video src="{{ url_for('static', filename=work.image_file) }}"
+                                   muted loop playsinline preload="metadata"></video>
+                        {% else %}
+                            <img src="{{ url_for('static', filename=work.image_file) }}"
+                                 alt="{{ work.title }}" loading="lazy">
+                        {% endif %}
+
+                        <div class="strip-item-caption">
+                            <h4>{{ work.title }}</h4>
+                            {% if work.event_date %}<span>📅 {{ work.event_date }}</span>{% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Scroll RIGHT button -->
+            <button class="gallery-scroll-btn gallery-scroll-right" id="galleryRight" aria-label="Scroll right">&#8250;</button>
+
+            <!-- Bottom bar -->
+            <div class="gallery-strip-bar">
+                <span class="gallery-strip-count">
+                    📸 {{ social_works | length }} {{ _('photos') }}
+                    &nbsp;·&nbsp; {{ _('Scroll or swipe to see all') }} →
+                </span>
+                <a href="{{ url_for('main.social_work') }}" class="gallery-strip-cta">
+                    {{ _('View Full Gallery') }} ↗
+                </a>
+            </div>
+
+            {% else %}
+
+            <!-- Empty state — shown when no photos uploaded yet -->
+            <div class="gallery-empty-state">
+                <div class="empty-icon">🖼️</div>
+                <h3>{{ _('Gallery Coming Soon') }}</h3>
+                <p>{{ _('Photos of our social work will appear here once uploaded from the admin panel.') }}</p>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORIES SECTION -->
 <section class="categories">
     <div class="section-container">
         <div class="section-header">
@@ -92,28 +361,22 @@
             <h2 class="section-title">{{ _('Complaint Categories') }}</h2>
             <p class="section-subtitle">{{ _('We handle all types of local community issues') }}</p>
         </div>
-
         <div class="category-grid">
             <a href="{{ url_for('complaints.submit') }}" class="category-card">
                 <h3>{{ _('Roads & Infrastructure') }}</h3>
             </a>
-
             <a href="{{ url_for('complaints.submit') }}" class="category-card">
                 <h3>{{ _('Water Supply') }}</h3>
             </a>
-
             <a href="{{ url_for('complaints.submit') }}" class="category-card">
                 <h3>{{ _('Electricity') }}</h3>
             </a>
-
             <a href="{{ url_for('complaints.submit') }}" class="category-card">
                 <h3>{{ _('Sanitation') }}</h3>
             </a>
-
             <a href="{{ url_for('complaints.submit') }}" class="category-card">
                 <h3>{{ _('Safety & Security') }}</h3>
             </a>
-
             <a href="{{ url_for('complaints.submit') }}" class="category-card">
                 <h3>{{ _('Other Issues') }}</h3>
             </a>
@@ -121,29 +384,105 @@
     </div>
 </section>
 
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <span class="nav-logo-text">शिव <span>सेतू</span></span>
-            <p>{{ _('Connecting citizens to solutions. Serving Borivali, Mumbai.') }}</p>
-        </div>
+<!-- LIGHTBOX (click any photo to view full) -->
+<div class="gallery-lightbox" id="galleryLightbox">
+    <div class="lightbox-inner">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-prev" id="lbPrev" onclick="shiftLightbox(-1)">&#8249;</button>
+        <button class="lightbox-next" id="lbNext" onclick="shiftLightbox(1)">&#8250;</button>
+        <div class="lightbox-media" id="lightboxMedia"></div>
+        <div class="lightbox-info" id="lightboxInfo"></div>
     </div>
+</div>
 
-    <div class="footer-bottom">
-        <p>© 2025 शिव सेतू. {{ _('All rights reserved.') }}</p>
-    </div>
-</footer>
+{% endblock %}
 
+{% block scripts %}
 <script>
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+// ── Gallery strip left/right buttons ─────────────────────
+const strip     = document.getElementById('galleryStrip');
+const btnLeft   = document.getElementById('galleryLeft');
+const btnRight  = document.getElementById('galleryRight');
+const SCROLL_BY = 520;
 
-if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+if (strip && btnLeft && btnRight) {
+    btnLeft.addEventListener('click',  () => strip.scrollBy({ left: -SCROLL_BY, behavior: 'smooth' }));
+    btnRight.addEventListener('click', () => strip.scrollBy({ left:  SCROLL_BY, behavior: 'smooth' }));
+
+    // Hide/show arrows based on scroll position
+    function updateArrows() {
+        btnLeft.style.opacity  = strip.scrollLeft > 10 ? '1' : '0.3';
+        btnRight.style.opacity = strip.scrollLeft < strip.scrollWidth - strip.clientWidth - 10 ? '1' : '0.3';
+    }
+    strip.addEventListener('scroll', updateArrows);
+    updateArrows();
 }
+
+// ── Lightbox ──────────────────────────────────────────────
+const items = [
+    {% for work in social_works %}
+    {
+        src:   "{{ url_for('static', filename=work.image_file) }}",
+        title: "{{ work.title | replace('"', '\\"') }}",
+        date:  {% if work.event_date %}"{{ work.event_date }}"{% else %}null{% endif %},
+        type:  "{% if work.media_type == 'video' %}video{% else %}image{% endif %}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+let lbIndex = 0;
+
+function openLightbox(index) {
+    if (!items.length) return;
+    lbIndex = index;
+    renderLightbox();
+    document.getElementById('galleryLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('galleryLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+    // Pause any playing video
+    const vid = document.querySelector('#lightboxMedia video');
+    if (vid) vid.pause();
+}
+
+function shiftLightbox(dir) {
+    lbIndex = (lbIndex + dir + items.length) % items.length;
+    renderLightbox();
+}
+
+function renderLightbox() {
+    const item  = items[lbIndex];
+    const media = document.getElementById('lightboxMedia');
+    const info  = document.getElementById('lightboxInfo');
+    if (!item) return;
+    if (item.type === 'video') {
+        media.innerHTML = `<video src="${item.src}" controls autoplay muted playsinline style="width:100%;max-height:80vh;"></video>`;
+    } else {
+        media.innerHTML = `<img src="${item.src}" alt="${item.title}" style="width:100%;max-height:80vh;object-fit:contain;">`;
+    }
+    info.innerHTML = `<h3>${item.title}</h3>${item.date ? '<p>📅 ' + item.date + '</p>' : ''}`;
+
+    // Show/hide prev-next if only 1 item
+    const showNav = items.length > 1;
+    document.getElementById('lbPrev').style.display = showNav ? 'flex' : 'none';
+    document.getElementById('lbNext').style.display = showNav ? 'flex' : 'none';
+}
+
+// Close lightbox on backdrop click
+document.getElementById('galleryLightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+});
+
+// Keyboard support
+document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('galleryLightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowRight') shiftLightbox(1);
+    if (e.key === 'ArrowLeft')  shiftLightbox(-1);
+});
 </script>
-
-<script src="{{ url_for('static', filename='js/slider.js') }}"></script>
-
-</body>
-</html>
+{% endblock %}

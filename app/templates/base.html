@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{% block title %}शिव सेतू{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo1.png') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+{% set ep = request.endpoint %}
+
+<!-- LANGUAGE SWITCH -->
+<div class="lang-switch">
+    <a href="{{ url_for('main.set_language', lang='en') }}">EN</a>
+    <a href="{{ url_for('main.set_language', lang='mr') }}">मराठी</a>
+</div>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+    <p>🇮🇳 &nbsp;{{ _('Shivsetu — Connecting Citizens to Solutions') }}</p>
+    <div class="top-strip-right">
+        <a href="{{ url_for('main.contact') }}">📞 +91 9820871320</a>
+        <a href="{{ url_for('auth.login') }}">{{ _('Admin Login') }}</a>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="{{ url_for('main.index') }}" class="nav-logo">
+        <div class="nav-logo-icon">🏹</div>
+        <span class="nav-logo-text">शिव <span>सेतू</span></span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="{{ url_for('main.index') }}" {% if ep == 'main.index' %}class="active"{% endif %}>{{ _('Home') }}</a></li>
+        <li><a href="{{ url_for('complaints.submit') }}" {% if ep == 'complaints.submit' %}class="active"{% endif %}>{{ _('Submit Complaint') }}</a></li>
+        <li><a href="{{ url_for('complaints.track') }}" {% if ep == 'complaints.track' %}class="active"{% endif %}>{{ _('Track Complaint') }}</a></li>
+        <li><a href="{{ url_for('main.about') }}" {% if ep == 'main.about' %}class="active"{% endif %}>{{ _('About') }}</a></li>
+        <li><a href="{{ url_for('main.contact') }}" {% if ep == 'main.contact' %}class="active"{% endif %}>{{ _('Contact') }}</a></li>
+        <li><a href="{{ url_for('main.helplines') }}" {% if ep == 'main.helplines' %}class="active"{% endif %}>{{ _('Helplines') }}</a></li>
+        <li><a href="{{ url_for('main.social_work') }}" {% if ep == 'main.social_work' %}class="active"{% endif %}>{{ _('Social Work') }}</a></li>
+    </ul>
+    <a href="{{ url_for('complaints.submit') }}" class="btn-nav">📝 {{ _('File a Complaint') }}</a>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="{{ url_for('main.index') }}" {% if ep == 'main.index' %}class="active"{% endif %}>🏠 {{ _('Home') }}</a>
+    <a href="{{ url_for('complaints.submit') }}" {% if ep == 'complaints.submit' %}class="active"{% endif %}>📝 {{ _('Submit Complaint') }}</a>
+    <a href="{{ url_for('complaints.track') }}" {% if ep == 'complaints.track' %}class="active"{% endif %}>🔍 {{ _('Track Complaint') }}</a>
+    <a href="{{ url_for('main.about') }}" {% if ep == 'main.about' %}class="active"{% endif %}>ℹ️ {{ _('About') }}</a>
+    <a href="{{ url_for('main.contact') }}" {% if ep == 'main.contact' %}class="active"{% endif %}>📞 {{ _('Contact') }}</a>
+    <a href="{{ url_for('auth.login') }}">🔐 {{ _('Admin Login') }}</a>
+    <a href="{{ url_for('main.helplines') }}" {% if ep == 'main.helplines' %}class="active"{% endif %}>{{ _('Helplines') }}</a>
+    <a href="{{ url_for('main.social_work') }}" {% if ep == 'main.social_work' %}class="active"{% endif %}>🖼️ {{ _('Social Work') }}</a>
+</div>
+
+<!-- FLASH MESSAGES -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-container" id="flashContainer">
+        {% for category, message in messages %}
+        <div class="flash-message flash-{{ category }}">
+            <span>{{ message }}</span>
+            <button class="flash-close" onclick="this.parentElement.remove()">✕</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+
+<!-- PAGE CONTENT -->
+{% block content %}{% endblock %}
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <span class="nav-logo-text">शिव <span>सेतू</span></span>
+            <p>{{ _('Connecting citizens to solutions. Serving Borivali, Mumbai.') }}</p>
+        </div>
+        <div class="footer-links">
+            <h4>{{ _('Quick Links') }}</h4>
+            <a href="{{ url_for('main.index') }}">{{ _('Home') }}</a>
+            <a href="{{ url_for('complaints.submit') }}">{{ _('Submit Complaint') }}</a>
+            <a href="{{ url_for('complaints.track') }}">{{ _('Track Complaint') }}</a>
+            <a href="{{ url_for('main.about') }}">{{ _('About') }}</a>
+            <a href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a>
+            <a href="{{ url_for('main.helplines') }}">{{ _('Helplines') }}</a>
+        </div>
+        <div class="footer-links">
+            <h4>{{ _('Contact') }}</h4>
+            <p>📍 Chikuwadi, Borivali, Mumbai</p>
+            <p>📞 +91 9820871320</p>
+            <p>✉️ vinodpandere.upvibhaghpramukh@gmail.com</p>
+            <p>🕐 {{ _('Mon–Sat: 9AM – 6PM') }}</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 शिव सेतू. {{ _('All rights reserved.') }}</p>
+    </div>
+</footer>
+
+<!-- SCROLL TO TOP BUTTON -->
+<button class="scroll-top-btn" id="scrollTopBtn" title="Back to top">↑</button>
+
+<!-- BASE SCRIPTS -->
+<script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    }
+
+    // Flash auto-dismiss after 4 seconds
+    const flashContainer = document.getElementById('flashContainer');
+    if (flashContainer) {
+        setTimeout(() => {
+            flashContainer.style.transition = 'opacity 0.6s ease';
+            flashContainer.style.opacity = '0';
+            setTimeout(() => flashContainer.remove(), 600);
+        }, 4000);
+    }
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+        scrollBtn.style.display = window.scrollY > 350 ? 'flex' : 'none';
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

@@ -13,13 +13,13 @@ def set_language(lang):
     return redirect(request.referrer or url_for('main.index'))
 
 
-# 🏠 Home Page
+# 🏠 Home Page — fetches ALL social work images for the gallery strip
 @main.route('/')
 def index():
-    social_works = SocialWorkImage.query.filter_by(show_on_slider=True).order_by(
-        SocialWorkImage.display_order.asc()
+    social_works = SocialWorkImage.query.order_by(
+        SocialWorkImage.display_order.asc(),
+        SocialWorkImage.created_at.desc()
     ).all()
-
     return render_template('index.html', social_works=social_works)
 
 
@@ -48,5 +48,4 @@ def social_work():
         SocialWorkImage.display_order.asc(),
         SocialWorkImage.created_at.desc()
     ).all()
-
     return render_template('social_work.html', social_works=social_works)
